@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tracker{% endblock title %}
+
+{% block body %}
+    <div>
+        <h1>Bienvenue</h1>
+    </div>
+    <div class="container">
+        <h2>Derniers ingrédients ajoutés</h2>
+        <div class="row-flex">
+            {% for ingredient in ingredients %}
+                <div class="col-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href='#'>{{ ingredient.name }}</a>
+                            </h5>
+                            <div class="text-primary">{{ ingredient.description }}</div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+{% endblock body %}
