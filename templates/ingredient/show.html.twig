@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="jumbotron">
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-md-8">
+                 
+                </div>
+                <div class="col-md-8">
+                    <h1>{{ ingredient.name }}</h1>
+                    <h2>{{ ingredient.description }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <div class="row">
+        <div class="col-md-8">
+            <table class="table table-striped">
+                <tr>
+                    <td>Type</th>
+                    <td>{{ ingredient.typeTYPE }} </td>
+                </tr>
+                <tr>
+                    <td>Quantity</th>
+                    <td>{{ ingredient.quantity }}{{ ' grams' }}</td>
+                </tr>
+                <tr>
+                    <th>Carbohydrate</th>
+                    <td>{{ ingredient.carbohydrate|number_format(2, '.', ',') }}</td>
+                </tr>
+                <tr>
+                    <th>Fat</th>
+                    <td>{{ ingredient.fat|number_format(2, '.', ',') }}</td>
+                </tr>
+                <tr>
+                    <th>Protein</th>
+                    <td>{{ ingredient.protein|number_format(2, '.', ',') }}</td>
+                </tr>
+                <tr>
+                    <th>Sugar</th>
+                    <td>{{ ingredient.sugar|number_format(2, '.', ',') }}</td>
+                </tr>
+                <tr>
+                    <th>Energy</th>
+                    <td>{{ ingredient.energy|number_format(2, '.', ',') }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}

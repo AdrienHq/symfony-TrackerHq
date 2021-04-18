@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\IngredientRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Cocur\Slugify\Slugify;
 
 /**
  * @ORM\Entity(repositoryClass=IngredientRepository::class)
@@ -11,13 +12,13 @@ use Doctrine\ORM\Mapping as ORM;
 class Ingredient
 {
     const TYPE = [
-        0 => 'unknown',
-        1 => 'meat',
-        2 => 'vegetable',
-        3 => 'fish',
-        4 => 'dairy',
-        5 => 'grains',
-        6 => 'fruit'
+        0 => 'Unknown',
+        1 => 'Meat',
+        2 => 'Vegetable',
+        3 => 'Fish',
+        4 => 'Dairy',
+        5 => 'Grains',
+        6 => 'Fruit'
     ];
 
     /**
@@ -48,27 +49,27 @@ class Ingredient
     private $quantity;
 
     /**
-     * @ORM\Column(type="decimal", precision=5, scale=2))
+     * @ORM\Column(type="decimal", precision=10, scale=2))
      */
     private $carbohydrate;
 
     /**
-     * @ORM\Column(type="decimal", precision=5, scale=2))
+     * @ORM\Column(type="decimal", precision=10, scale=2))
      */
     private $fat;
 
     /**
-     * @ORM\Column(type="decimal", precision=5, scale=2))
+     * @ORM\Column(type="decimal", precision=10, scale=2))
      */
     private $protein;
 
     /**
-     * @ORM\Column(type="decimal", precision=5, scale=2))
+     * @ORM\Column(type="decimal", precision=10, scale=2))
      */
     private $sugar;
 
     /**
-     * @ORM\Column(type="decimal", precision=5, scale=2))
+     * @ORM\Column(type="decimal", precision=10, scale=2))
      */
     private $energy;
 
@@ -94,6 +95,12 @@ class Ingredient
         return $this;
     }
 
+    public function getSlug(): string
+    {
+        return (new Slugify())->slugify($this->name);
+
+    }
+
     public function getDescription(): ?string
     {
         return $this->description;
@@ -116,6 +123,11 @@ class Ingredient
         $this->type = $type;
 
         return $this;
+    }
+
+    public function getTypeType(): string
+    {
+        return self::TYPE[$this->type];
     }
 
     public function getQuantity(): ?int
