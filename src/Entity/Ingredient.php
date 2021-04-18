@@ -142,60 +142,60 @@ class Ingredient
         return $this;
     }
 
-    public function getCarbohydrate(): ?int
+    public function getCarbohydrate(): string
     {
         return $this->carbohydrate;
     }
 
-    public function setCarbohydrate(int $carbohydrate): self
+    public function setCarbohydrate(string $carbohydrate): self
     {
         $this->carbohydrate = $carbohydrate;
 
         return $this;
     }
 
-    public function getFat(): ?int
+    public function getFat(): string
     {
         return $this->fat;
     }
 
-    public function setFat(int $fat): self
+    public function setFat(string $fat): self
     {
         $this->fat = $fat;
 
         return $this;
     }
 
-    public function getProtein(): ?int
+    public function getProtein(): string
     {
         return $this->protein;
     }
 
-    public function setProtein(int $protein): self
+    public function setProtein(string $protein): self
     {
         $this->protein = $protein;
 
         return $this;
     }
 
-    public function getSugar(): ?int
+    public function getSugar(): string
     {
         return $this->sugar;
     }
 
-    public function setSugar(int $sugar): self
+    public function setSugar(string $sugar): self
     {
         $this->sugar = $sugar;
 
         return $this;
     }
 
-    public function getEnergy(): ?int
+    public function getEnergy(): string
     {
         return $this->energy;
     }
 
-    public function setEnergy(int $energy): self
+    public function setEnergy(string $energy): self
     {
         $this->energy = $energy;
 

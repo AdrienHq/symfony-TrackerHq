@@ -31,7 +31,7 @@ class IngredientController extends AbstractController
     public function index(IngredientRepository $ingRepo): Response
     {
         
-        /* $ingredient = new Ingredient();
+        /* --$ingredient = new Ingredient();
         $ingredient->setName('Steak')->setType(1)->setDescription('Du poulet')->setQuantity(100)->setCarbohydrate(3.57)->setFat(8.93)->setProtein(16.07)->setSugar(1.79)->setEnergy(161)->setCreatedBy('');
         $em = $this->getDoctrine()->getManager();
         $em->persist($ingredient);
