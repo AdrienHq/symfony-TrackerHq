@@ -17,7 +17,7 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2" id="navbarColor02">
+            <div class="collapse navbar-collapse" id="navbarColor02">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="#">User Profile</a>
@@ -36,7 +36,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
             </div>
-            <div class="navbar-collapse collapse w-100 order-3 dual-collapse2" id="navbarColor02">
+            <div class="collapse navbar-collapse" id="navbarColor02">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link {% if current_menu is defined and current_menu == 'ingredients' %}active{% endif %}" href="{{ path('ingredient.index') }}">Ingredients</a>
@@ -45,9 +45,28 @@
                         <a class="nav-link" href="#">Recipes</a>
                     </li>
                 </ul>
+                {% if app.user %}
+                     <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="{{ path('logout') }}" class="nav-link">Se déconnecter</a>
+                        </li>
+                    </ul>
+                {% else %}
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="{{ path('login') }}" class="nav-link">Se connecter</a>
+                        </li>
+                    </ul>
+                {% endif %}
+                {% if is_granted('ROLE_ADMIN') %}
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="{{ path('admin.ingredient.index') }}" class="nav-link">Administration</a>
+                        </li>
+                    </ul>
+                {% endif %}
             </div>
         </nav>
-
         <div class="container">
             {% block body %}
             {% endblock %}
