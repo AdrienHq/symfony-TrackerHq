@@ -20,10 +20,16 @@ class SecurityController extends AbstractController
      */
     private $repository;
 
-    public function __construct(UserRepository $repository, EntityManagerInterface $em)
+    /**
+     * @var UserPasswordEncoderInterface 
+    */
+    private $passwordEncoder;
+
+    public function __construct(UserRepository $repository, EntityManagerInterface $em, UserPasswordEncoderInterface $passwordEncoder)
     {
         $this->repository = $repository;
         $this->em = $em;
+        $this->passwordEncoder = $passwordEncoder;
     }
 
     /**
@@ -48,7 +54,6 @@ class SecurityController extends AbstractController
         $form = $this->createForm(RegistrationType::class, $user);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
-            $password = $passwordEncoder->encodePassword($user, $user->getPassword());
             $brm = ( ($user->getWeight()*10)+($user->getHeight()*6.25)-(5*$user->getAge())+5);
             if( $user->getGender() == 0 ){
                 $brm += 5;
@@ -67,7 +72,9 @@ class SecurityController extends AbstractController
             if( $user->getActivity() == 3){
                 $brm *= 1.9;
             }
+            $user->setPassword($this->passwordEncoder->encodePassword($user, $user->getPassword()));
             $user->setBrm($brm);
+            $user->setRoles(['ROLE_USER']);
             $this->em->persist($user);
             $this->em->flush();
             $this->addFlash('success', 'Creation successful');
