@@ -19,7 +19,7 @@ security:
                 check_path: login
 
     access_control:
-        #- { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/admin, roles: ROLE_ADMIN }
         #- { path: ^/, roles: ROLE_USER }
 
     encoders:
