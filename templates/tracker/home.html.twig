@@ -2,11 +2,22 @@
 
 {% block title %}Tracker{% endblock title %}
 
+{% block adminNav %}{% endblock %}
+
 {% block body %}
-    <div class="container">
+<div class="container-fluid text-center">
+
+    <div class="text-center">
         <h1>Bienvenue</h1>
     </div>
+
     <div class="container">
+        <p>
+            Gràce à tracker vous allez pouvoir gérer votre prise de pois ou régime.
+            Nous avon prévu une série d'aliment et de recettes que vous pourrez rajouter 
+        </p>
+    </div>
+    <div class="container ">
         <h2>Derniers ingrédients ajoutés</h2>
         <div class="row">
             {% for ingredient in ingredients %}
@@ -23,5 +34,6 @@
             {% endfor %}
         </div>
     </div>
+</div>
     
 {% endblock body %}

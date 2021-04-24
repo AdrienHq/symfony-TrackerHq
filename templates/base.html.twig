@@ -17,34 +17,40 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="collapse navbar-collapse" id="navbarColor02">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">User Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="//codeply.com">Dashboard</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Follow-up</a>
-                    </li>
-                </ul>
-            </div>
+            {% if app.user %}
+                <div class="collapse navbar-collapse" id="navbarColor02">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">User Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="//codeply.com">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Follow-up</a>
+                        </li>
+                    </ul>
+                </div>
+            {% endif %}
             <div class="mx-auto order-0">
                 <a class="navbar-brand" href="/">Tracker</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
             </div>
+            
             <div class="collapse navbar-collapse" id="navbarColor02">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link {% if current_menu is defined and current_menu == 'ingredients' %}active{% endif %}" href="{{ path('ingredient.index') }}">Ingredients</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Recipes</a>
-                    </li>
-                </ul>
+                {% if app.user %}
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link {% if current_menu is defined and current_menu == 'ingredients' %}active{% endif %}" href="{{ path('ingredient.index') }}">Ingredients</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Recipes</a>
+                        </li>
+                    </ul>
+                {% endif %}
+                
                 {% if app.user %}
                      <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
@@ -54,11 +60,14 @@
                 {% else %}
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
+                            <a href="{{ path('inscription') }}" class="nav-link">Inscription</a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ path('login') }}" class="nav-link">Se connecter</a>
                         </li>
                     </ul>
                 {% endif %}
-                {% if is_granted('ROLE_ADMIN') %}
+                {% if is_granted('ROLE_USER') %}
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
                             <a href="{{ path('admin.ingredient.index') }}" class="nav-link">Administration</a>
@@ -67,9 +76,32 @@
                 {% endif %}
             </div>
         </nav>
+
+        <div>
+            {% block adminNav %}
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">User <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('admin.ingredient.index') }}" class="nav-link" >Ingredient</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Recipe</a>
+                    </li>
+                    </ul>
+                </div>
+                </nav>
+            {% endblock %}
+        </div>
+                
         <div class="container">
             {% block body %}
             {% endblock %}
         </div>
+        <footer>
+        </footer>
     </body>
 </html>
