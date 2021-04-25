@@ -7,19 +7,33 @@
 {% block body %}
 <div class="container-fluid text-center">
 
-    <div class="text-center">
+    <div class="jumbotron text-center">
         <h1>Bienvenue</h1>
-    </div>
-
-    <div class="container">
         <p>
-            Gràce à tracker vous allez pouvoir gérer votre prise de pois ou régime.
-            Nous avon prévu une série d'aliment et de recettes que vous pourrez rajouter 
+            Gràce à tracker vous allez pouvoir gérer votre prise de poids ou régime.
+            Nous avons prévu une série d'aliments et de recettes que vous pourrez rajouter 
         </p>
     </div>
-    <div class="container ">
+    <div class="jumbotron container">
+        <h2>Dernière recettes ajoutés</h2>
+        <div class="row flex">
+            {% for recipe in recipes %}
+                <div class="col-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="{{ path('recipe.show', {id: recipe.id, slug: recipe.slug}) }}">{{ recipe.name }}</a>
+                            </h5>
+                            <p class="card-text">{{ recipe.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="jumbotron container">
         <h2>Derniers ingrédients ajoutés</h2>
-        <div class="row">
+        <div class="row flex">
             {% for ingredient in ingredients %}
                 <div class="col-3">
                     <div class="card">
@@ -27,7 +41,7 @@
                             <h5 class="card-title">
                                 <a href="{{ path('ingredient.show', {id: ingredient.id, slug: ingredient.slug}) }}">{{ ingredient.name }}</a>
                             </h5>
-                            <div class="text-primary">{{ ingredient.description }}</div>
+                            <p class="card-text">{{ ingredient.description }}</p>
                         </div>
                     </div>
                 </div>

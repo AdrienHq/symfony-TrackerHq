@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recipes{% endblock %}
+
+{% block adminNav %}{% endblock %}
+
+{% block body %}
+    <div>
+        <h1>Recettes</h1>
+    </div>
+    <div class="container">
+        <div class="row-flex">
+            {% for recipe in recipes %}
+                <div class="col-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="{{ path('ingredient.show', {id: recipe.id, slug: recipe.slug}) }}">{{ recipe.name }}</a>
+                            </h5>
+                            <div class="text-primary">{{ recipe.description }}</div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+{% endblock body %}
