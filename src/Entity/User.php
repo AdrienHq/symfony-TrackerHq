@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Serializable;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -97,6 +99,16 @@ class User implements UserInterface, Serializable
      * @ORM\ManyToOne(targetEntity=Plan::class, inversedBy="userPlan")
      */
     private $plan;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Meal::class, mappedBy="userMeal")
+     */
+    private $mealRecipe;
+
+    public function __construct()
+    {
+        $this->mealRecipe = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -335,6 +347,36 @@ class User implements UserInterface, Serializable
     public function setPlan(?Plan $plan): self
     {
         $this->plan = $plan;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Meal[]
+     */
+    public function getMealRecipe(): Collection
+    {
+        return $this->mealRecipe;
+    }
+
+    public function addMealRecipe(Meal $mealRecipe): self
+    {
+        if (!$this->mealRecipe->contains($mealRecipe)) {
+            $this->mealRecipe[] = $mealRecipe;
+            $mealRecipe->setUserMeal($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMealRecipe(Meal $mealRecipe): self
+    {
+        if ($this->mealRecipe->removeElement($mealRecipe)) {
+            // set the owning side to null (unless already changed)
+            if ($mealRecipe->getUserMeal() === $this) {
+                $mealRecipe->setUserMeal(null);
+            }
+        }
 
         return $this;
     }

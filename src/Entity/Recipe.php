@@ -35,9 +35,15 @@ class Recipe
      */
     private $ingredients;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Meal::class, mappedBy="mealRecipes")
+     */
+    private $recipeInMeal;
+
     public function __construct()
     {
         $this->ingredients = new ArrayCollection();
+        $this->recipeInMeal = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -97,5 +103,32 @@ class Recipe
     {
         return (new Slugify())->slugify($this->name);
 
+    }
+
+    /**
+     * @return Collection|Meal[]
+     */
+    public function getRecipeInMeal(): Collection
+    {
+        return $this->recipeInMeal;
+    }
+
+    public function addRecipeInMeal(Meal $recipeInMeal): self
+    {
+        if (!$this->recipeInMeal->contains($recipeInMeal)) {
+            $this->recipeInMeal[] = $recipeInMeal;
+            $recipeInMeal->addMealRecipe($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRecipeInMeal(Meal $recipeInMeal): self
+    {
+        if ($this->recipeInMeal->removeElement($recipeInMeal)) {
+            $recipeInMeal->removeMealRecipe($this);
+        }
+
+        return $this;
     }
 }

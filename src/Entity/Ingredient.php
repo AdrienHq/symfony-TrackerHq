@@ -87,9 +87,15 @@ class Ingredient
      */
     private $recipes;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Meal::class, mappedBy="mealIngredient")
+     */
+    private $ingredientInMeal;
+
     public function __construct()
     {
         $this->recipes = new ArrayCollection();
+        $this->ingredientInMeal = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -250,6 +256,33 @@ class Ingredient
     {
         if ($this->recipes->removeElement($recipe)) {
             $recipe->removeIngredient($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Meal[]
+     */
+    public function getIngredientInMeal(): Collection
+    {
+        return $this->ingredientInMeal;
+    }
+
+    public function addIngredientInMeal(Meal $ingredientInMeal): self
+    {
+        if (!$this->ingredientInMeal->contains($ingredientInMeal)) {
+            $this->ingredientInMeal[] = $ingredientInMeal;
+            $ingredientInMeal->addMealIngredient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIngredientInMeal(Meal $ingredientInMeal): self
+    {
+        if ($this->ingredientInMeal->removeElement($ingredientInMeal)) {
+            $ingredientInMeal->removeMealIngredient($this);
         }
 
         return $this;

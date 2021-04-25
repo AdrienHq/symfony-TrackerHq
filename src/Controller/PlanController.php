@@ -31,12 +31,13 @@ class PlanController extends AbstractController
      */
     public function index(PlanRepository $planRepo): Response
     {
-        
+        /*
         $plan = new Plan();
-        $plan->setName('Diet')->setType(0)->setDescription('Perte de poids');
+        $plan->setName('Normal')->setType(1)->setDescription('Stabilisation');
         $em = $this->getDoctrine()->getManager();
         $em->persist($plan);
         $em->flush();
+        */
         $plans = $planRepo->findAll(); 
         return $this->render('plan/plan.html.twig', [
             'plans' => $plans,
