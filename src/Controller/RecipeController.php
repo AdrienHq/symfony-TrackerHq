@@ -5,12 +5,14 @@ namespace App\Controller;
 use App\Entity\Ingredient;
 use App\Repository\IngredientRepository;
 use App\Entity\Recipe;
+use App\Form\RecipeType;
 use App\Repository\RecipeRepository;
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 class RecipeController extends AbstractController
 {
@@ -57,6 +59,26 @@ class RecipeController extends AbstractController
             'current_menu' => 'recipe'
         ]);
 
+    }
+
+    /**
+     * @Route("/recipe/create", name="recipe.new")
+     */
+    public function new(Request $request)
+    {
+        $recipe = new Recipe();
+        $form = $this->createForm(RecipeType::class, $recipe);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $this->em->persist($recipe);
+            $this->em->flush();
+            $this->addFlash('success', 'Creation successful');
+            return $this->redirectToRoute('recipe.index');
+        }
+        return $this->render('/recipe/new.html.twig', [
+            'recipe' => $recipe,
+            'form' => $form->createView()
+        ]);
     }
 
 }

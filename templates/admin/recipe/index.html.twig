@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des recettes{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>Toutes les recettes</h1>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for recipe in recipes %}
+                    <tr>
+                        <td>{{recipe.name}}</td>
+                        <td>
+                            <a href="{{ path('admin.recipe.edit', {id: recipe.id } ) }}" class="btn btn-secondary">Editer</a>
+                            <form method ="post" action="{{ path('admin.recipe.delete', {id: recipe.id}) }}" style="display: inline-block" onsubmit="return confirm('Are you sure ?')">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ recipe.id) }}">
+                                <button class="btn btn-danger">Supprimer</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="text-right">
+            <a href="{{ path('admin.recipe.new') }}" class="btn btn-primary">Créer une recette</a>
+        </div>
+    </div>
+{% endblock body %}

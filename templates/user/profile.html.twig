@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block adminNav %}{% endblock %}
+
+{% block body %}
+        <div class="jumbotron">
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-md-8">
+                    <h1>Votre profile</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <div class="row">
+        <div class="col-md-8">
+            <table class="table table-striped">
+                <tr>
+                    <td>Nom</th>
+                    <td>{{ user.name }} </td>
+                </tr>
+                <tr>
+                    <td>Prénom</th>
+                    <td>{{ user.firstname }}</td>
+                </tr>
+                <tr>
+                    <th>Username</th>
+                    <td>{{ user.username }}</td>
+                </tr>
+                <tr>
+                    <th>Poids</th>
+                    <td>{{ user.weight }}</td>
+                </tr>
+                <tr>
+                    <th>Taille</th>
+                    <td>{{ user.height }}</td>
+                </tr>
+                <tr>
+                    <th>BMR</th>
+                    <td>{{ user.brm }}</td>
+                </tr>
+                <tr>
+                    <th>Gender</th>
+                    <td>{% if (user.gender == 0) %} {{ "Male" }} {% else %} {{ "Female" }} {% endif %} </td>
+                </tr>
+                <tr>
+                    <th>Activity</th>
+                    <td>{% if (user.activity == 0) %} {{ "Sédentaire" }} {% endif %} </td>
+                    <td>{% if (user.activity == 1) %} {{ "Actif" }} {% endif %} </td>
+                    <td>{% if (user.activity == 2) %} {{ "Très actif" }}  {% endif %} </td>
+                    <td>{% if (user.activity == 3) %} {{ "Sportif" }}  {% endif %} </td>
+                </tr>
+                
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}

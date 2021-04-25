@@ -3,11 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Ingredient;
+use App\Form\IngredientType;
 use App\Repository\IngredientRepository;
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 
 class IngredientController extends AbstractController
@@ -60,6 +62,26 @@ class IngredientController extends AbstractController
             'ingredient' => $ingredient,
             'current_menu' => 'ingredients'
         ]);
+    }
 
+
+    /**
+     * @Route("/ingredient/create", name="ingredient.new")
+     */
+    public function new(Request $request)
+    {
+        $ingredient = new Ingredient();
+        $form = $this->createForm(IngredientType::class, $ingredient);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $this->em->persist($ingredient);
+            $this->em->flush();
+            $this->addFlash('success', 'Creation successful');
+            return $this->redirectToRoute('ingredient.index');
+        }
+        return $this->render('/ingredient/new.html.twig', [
+            'ingredient' => $ingredient,
+            'form' => $form->createView()
+        ]);
     }
 }

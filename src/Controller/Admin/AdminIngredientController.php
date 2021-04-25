@@ -26,7 +26,7 @@ class AdminIngredientController extends AbstractController
     }
 
     /**
-     * @Route("/admin", name="admin.ingredient.index")
+     * @Route("/admin/ingredient", name="admin.ingredient.index")
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function index()

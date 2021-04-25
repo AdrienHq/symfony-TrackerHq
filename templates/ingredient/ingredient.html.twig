@@ -6,13 +6,13 @@
 
 {% block body %}
     <div>
-        <h1>Ingredients</h1>
+        <h1 class="mt-4">Ingredients</h1>
     </div>
     <div class="container">
         <div class="row-flex">
             {% for ingredient in ingredients %}
                 <div class="col-3">
-                    <div class="card">
+                    <div class="card mt-4">
                         <div class="card-body">
                             <h5 class="card-title">
                                 <a href="{{ path('ingredient.show', {id: ingredient.id, slug: ingredient.slug}) }}">{{ ingredient.name }}</a>
@@ -24,5 +24,7 @@
             {% endfor %}
         </div>
     </div>
-    
+    <div class="text-right">
+        <a href="{{ path('ingredient.new') }}" class="btn btn-primary">Créer un ingrédient</a>
+    </div>
 {% endblock body %}

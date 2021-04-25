@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create{% endblock %}
+
+{% block adminNav %}{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h2>Création d'un ingrédient</h2>
+        {{ include ('admin/ingredient/_form.html.twig', {form: form, button: 'Créer'}) }}
+    </div>
+{% endblock body %}

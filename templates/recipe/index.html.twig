@@ -6,16 +6,16 @@
 
 {% block body %}
     <div>
-        <h1>Recettes</h1>
+        <h1 class="mt-4">Recettes</h1>
     </div>
-    <div class="container">
+    <div class="container style="background-color: white"">
         <div class="row-flex">
             {% for recipe in recipes %}
                 <div class="col-3">
-                    <div class="card">
+                    <div class="card mt-4">
                         <div class="card-body">
                             <h5 class="card-title">
-                                <a href="{{ path('ingredient.show', {id: recipe.id, slug: recipe.slug}) }}">{{ recipe.name }}</a>
+                                <a href="{{ path('recipe.show', {id: recipe.id, slug: recipe.slug}) }}">{{ recipe.name }}</a>
                             </h5>
                             <div class="text-primary">{{ recipe.description }}</div>
                         </div>
@@ -24,5 +24,7 @@
             {% endfor %}
         </div>
     </div>
-    
+    <div class="text-right">
+        <a href="{{ path('recipe.new') }}" class="btn btn-primary">Créer une recette</a>
+    </div>
 {% endblock body %}

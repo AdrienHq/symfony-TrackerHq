@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create User{% endblock %}
+
+{% block adminNav %}{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h2>Création d'un utilisateur</h2>
+        {{ include ('admin/user/_form.html.twig', {form: form, button: 'Créer'}) }}
+    </div>
+{% endblock body %}

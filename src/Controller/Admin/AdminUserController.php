@@ -26,13 +26,13 @@ class AdminUserController extends AbstractController
     }
 
     /**
-     * @Route("/adminUser", name="admin.user.index")
+     * @Route("/admin", name="admin.user.index")
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function index()
     {
-        $user = $this->repository->findAll();
-        return $this->render('admin/user/index.html.twig', compact('user'));
+        $users = $this->repository->findAll();
+        return $this->render('admin/user/index.html.twig', compact('users'));
     }
 
     /**
