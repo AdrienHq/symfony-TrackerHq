@@ -5,9 +5,9 @@ namespace App\Form;
 use App\Entity\Ingredient;
 use App\Entity\Recipe;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class RecipeType extends AbstractType
 {
@@ -16,10 +16,11 @@ class RecipeType extends AbstractType
         $builder
             ->add('name')
             ->add('description')
-            ->add('ingredients', CollectionType::class, [
-                'entry_type' => IngredientType::class,
-                'entry_options' => ['label' => false],
-                'allow_add' => true,
+            ->add('ingredients',EntityType::class,[
+                'class'=>Ingredient::class,
+                'choice_label'=>'name',
+                'multiple'=>true,
+                'expanded'=>true,
             ]);
             
         ;

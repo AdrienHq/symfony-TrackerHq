@@ -16,12 +16,20 @@
             </div>
         </div>
     </div>
-   
     <div class="row">
         <div class="col-md-8">
-            
+            <table class="table table-striped">
+                {% for ingredient in recipe.ingredients %}
+                    <tr>
+                        <td>{{ ingredient.name }} </td>
+                        <td>{{ ingredient.description }} </td>
+                        <td>{{ ingredient.quantity }} {{ "gramme(s)"}} </td>
+                    </tr>
+                {% endfor %}
+            </table>
         </div>
     </div>
+
 {% endblock %}
 
 {% block title %}

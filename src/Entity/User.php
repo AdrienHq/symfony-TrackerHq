@@ -93,6 +93,11 @@ class User implements UserInterface, Serializable
      */
     private $username;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Plan::class, inversedBy="userPlan")
+     */
+    private $plan;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -318,6 +323,18 @@ class User implements UserInterface, Serializable
     public function setUsername(string $username): self
     {
         $this->username = $username;
+
+        return $this;
+    }
+
+    public function getPlan(): ?Plan
+    {
+        return $this->plan;
+    }
+
+    public function setPlan(?Plan $plan): self
+    {
+        $this->plan = $plan;
 
         return $this;
     }
