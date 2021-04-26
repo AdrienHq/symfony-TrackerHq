@@ -6,12 +6,15 @@
     <div class="jumbotron">
         <div class="container mt-4">
             <div class="row">
-                <div class="col-md-8">
-                 
-                </div>
-                <div class="col-md-8">
+                <div class="col-md-4">
                     <h1>{{ recipe.name }}</h1>
                     <h2>{{ recipe.description }}</h2>
+                </div>
+                 <div class="col-md-8">
+                    {% if recipe.filename %}
+                        {# | imagine_filter('thumb', runtimeConfig) #}
+                        <img src="{{ vich_uploader_asset(recipe, 'imageFile') }}" alt="card-img-top" style="width: 100%; height:auto">
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -28,8 +31,29 @@
                 {% endfor %}
             </table>
         </div>
+        <div class="col-md-4">
+            <h2>Composition</h2>
+            {% set totalFat = 0 %}
+            {% set totalProtein = 0 %}
+            {% set totalSugar = 0 %}
+            {% set totalEnergy = 0 %}
+            {% set totalCarbohydrate = 0 %}
+            {% for ingredient in recipe.ingredients %}
+                {% set totalFat = totalFat + ingredient.fat  %}
+                {% set totalProtein = totalProtein + ingredient.protein %}
+                {% set totalSugar = totalSugar + ingredient.sugar %}
+                {% set totalEnergy = totalEnergy + ingredient.energy %}
+                {% set totalCarbohydrate = totalCarbohydrate + ingredient.carbohydrate %}
+            {% endfor %}
+            <ul class="list-group">
+                <li class="list-group-item">{{ "Fat : " }} {{ totalFat|number_format(2, '.', ',') }}</li>
+                <li class="list-group-item">{{ "Protein : " }}{{ totalProtein|number_format(2, '.', ',') }}</li>
+                <li class="list-group-item">{{ "Sugar : " }}{{ totalSugar|number_format(2, '.', ',') }}</li>
+                <li class="list-group-item">{{ "Energy : " }}{{ totalEnergy|number_format(2, '.', ',') }}</li>
+                <li class="list-group-item">{{ "Carbohydrate : " }}{{ totalCarbohydrate|number_format(2, '.', ',') }}</li>
+            </ul>
+        </div>
     </div>
-
 {% endblock %}
 
 {% block title %}
