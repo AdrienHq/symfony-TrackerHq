@@ -6,14 +6,16 @@
 
 {% block body %}
     <div>
-        <h1 class="mt-4">Ingredients</h1>
-    </div>
-    <div class="container">
-        <div class="row-flex">
+        <h1 class="mt-4">Tous les ingrédients</h1>
+        <div class="row">
             {% for ingredient in ingredients %}
-                <div class="col-3">
+                <div class="col-md-4">
                     <div class="card mt-4">
                         <div class="card-body">
+                            {% if ingredient.filename %}
+                                {# | imagine_filter('thumb', runtimeConfig) #}
+                                <img src="{{ vich_uploader_asset(ingredient, 'imageFile') }}" alt="card-img-top" style="width: 100%; height:auto">
+                            {% endif %}
                             <h5 class="card-title">
                                 <a href="{{ path('ingredient.show', {id: ingredient.id, slug: ingredient.slug}) }}">{{ ingredient.name }}</a>
                             </h5>

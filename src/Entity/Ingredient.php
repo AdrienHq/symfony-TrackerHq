@@ -8,10 +8,14 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Cocur\Slugify\Slugify;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=IngredientRepository::class)
  * @UniqueEntity("name")
+ * @Vich\Uploadable
  */
 class Ingredient
 {
@@ -91,6 +95,21 @@ class Ingredient
      * @ORM\ManyToMany(targetEntity=Meal::class, mappedBy="mealIngredient")
      */
     private $ingredientInMeal;
+
+    /**
+     * @var string|null
+     * @ORM\Column(type="string", length=255)
+     */
+    private $filename;
+
+    /**
+     * @var File|null
+     * @Assert\Image(
+     *     mimeTypes={"image/png", "image/jpeg"}
+     * )
+     * @Vich\UploadableField(mapping="ingredient_image", fileNameProperty="filename")
+     */
+    private $imageFile;
 
     public function __construct()
     {
@@ -285,6 +304,39 @@ class Ingredient
             $ingredientInMeal->removeMealIngredient($this);
         }
 
+        return $this;
+    }
+
+    public function getFilename(): ?string
+    {
+        return $this->filename;
+    }
+
+    /**
+     * @param null|string $filename
+     * @return Ingredient
+     */
+    public function setFilename(?string $filename): Ingredient
+    {
+        $this->filename = $filename;
+        return $this;
+    }
+
+    /**
+     * @return null|File
+     */
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * @param null|File $imageFile
+     * @return Ingredient
+     */
+    public function setImageFile(?File $imageFile): Ingredient
+    {
+        $this->imageFile = $imageFile;
         return $this;
     }
 }

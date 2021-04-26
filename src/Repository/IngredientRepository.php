@@ -31,6 +31,14 @@ class IngredientRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    /**
+     * @return Ingredient[]
+     */
+    public function typeSearch(): array
+    {
+        return $this->findAll();
+    }
+
 
     // /**
     //  * @return Ingredient[] Returns an array of Ingredient objects
