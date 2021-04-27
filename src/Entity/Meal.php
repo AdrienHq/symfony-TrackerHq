@@ -12,6 +12,14 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Meal
 {
+
+    const TYPE = [
+        0 => 'Collation',
+        1 => 'Petit-déjeuner',
+        2 => 'Déjeuner',
+        3 => 'Diner'
+    ];
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -137,5 +145,10 @@ class Meal
         $this->mealRecipes->removeElement($mealRecipe);
 
         return $this;
+    }
+
+    public function getTypeType(): string
+    {
+        return self::TYPE[$this->type];
     }
 }

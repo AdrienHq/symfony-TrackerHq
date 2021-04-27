@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create{% endblock %}
+
+{% block adminNav %}{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h2>Ajouter un repas à votre suivi</h2>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+        {{ include ('meal/_form.html.twig', {form: form, button: 'Créer'}) }}
+    </div>
+{% endblock body %}

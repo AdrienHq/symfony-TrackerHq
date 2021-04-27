@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Meal;
+use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -17,6 +18,23 @@ class MealRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Meal::class);
+    }
+
+    /**
+     * @return Meal[] Returns an array of Meal objects
+     */
+    public function findMealByUser($valueUser, $valueDate)
+    {
+        $this->valueUser = $valueUser->getId();
+        return $this->createQueryBuilder('m')
+            ->andWhere('m.userMeal = :valId')
+            ->andWhere('m.date = :valueDate')
+            ->setParameter('valId', $valueUser)
+            ->setParameter('valueDate', $valueDate)
+            ->orderBy('m.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
     }
 
     // /**

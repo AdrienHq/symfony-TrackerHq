@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block adminNav %}{% endblock %}
+
+{% block body %}
+    <div class="jumbotron"><h1>Dashboard</h1></div>
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Vos informations</h2>
+            <ul class="list-group">
+                <li class="list-group-item">{{ "Taux métabolique de base (BMR)" }} {{ user.brm }}</li>
+            </ul>
+        </div> 
+        <div class="list-group col-md-4">
+            <a href="#" class="list-group-item list-group-item-action active">Recettes consommées aujourd'hui</a>
+            {% for meal in allUserMeal %}
+                {% for recipe in meal.mealRecipes %}
+                    <a href="#" class="list-group-item list-group-item-action">{{ recipe.name }}</a>
+                {% endfor %}
+            {% endfor %}
+        </div>
+        <div class="list-group col-md-4">
+            <a href="#" class="list-group-item list-group-item-action active">Ingrédients consommés aujourd'hui</a>
+            {% for meal in allUserMeal %}
+                {% for ingredient in meal.mealIngredient %}
+                    <a href="#" class="list-group-item list-group-item-action">{{ ingredient.name }}</a>    
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

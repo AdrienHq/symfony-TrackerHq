@@ -24,10 +24,10 @@
                             <a class="nav-link {% if current_menu is defined and current_menu == 'profile' %}active{% endif %}" href="{{ path('user.show') }}">User Profile</a>>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="//codeply.com">Dashboard</a>
+                            <a class="nav-link {% if current_menu is defined and current_menu == 'dashboard' %}active{% endif %}" href="{{ path('dashboard.index') }}">Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Meal</a>
+                            <a class="nav-link {% if current_menu is defined and current_menu == 'meal' %}active{% endif %}" href="{{ path('meal.new') }}">Meal</a>
                         </li>
                     </ul>
                 </div>

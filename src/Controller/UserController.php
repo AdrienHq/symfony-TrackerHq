@@ -11,9 +11,15 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\EntityManagerInterface;
 
 class UserController extends AbstractController
 {
+
+    /**
+     * @var EntityManagerInterface
+     */
+    private $em;
 
     /**
      * @var Security
@@ -21,8 +27,9 @@ class UserController extends AbstractController
     private $security;
 
 
-    public function __construct(Security $security)
+    public function __construct(EntityManagerInterface $em, Security $security)
     {
+        $this->em = $em;
         $this->security = $security;
     }
 
