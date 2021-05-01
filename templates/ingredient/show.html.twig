@@ -28,7 +28,9 @@
             <table class="table table-striped">
                 <tr>
                     <td>Type</th>
-                    <td>{{ ingredient.typeTYPE }} </td>
+                    {% for categoryIngredient in ingredient.categoryIngredient %}
+                        <td>{{ categoryIngredient }} </td>
+                    {% endfor %}
                 </tr>
                 <tr>
                     <td>Quantity</th>

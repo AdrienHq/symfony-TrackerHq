@@ -19,16 +19,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Ingredient
 {
-    const TYPE = [
-        0 => 'Unknown',
-        1 => 'Meat',
-        2 => 'Vegetable',
-        3 => 'Fish',
-        4 => 'Dairy',
-        5 => 'Grains',
-        6 => 'Fruit'
-    ];
-
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -45,11 +35,6 @@ class Ingredient
      * @ORM\Column(type="text", nullable=true)
      */
     private $description;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $type = 0;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -111,10 +96,16 @@ class Ingredient
      */
     private $imageFile;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=CategoryIngredient::class, inversedBy="categoryIngredients")
+     */
+    private $categoryIngredient;
+
     public function __construct()
     {
         $this->recipes = new ArrayCollection();
         $this->ingredientInMeal = new ArrayCollection();
+        $this->categoryIngredient = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -150,23 +141,6 @@ class Ingredient
         $this->description = $description;
 
         return $this;
-    }
-
-    public function getType(): ?int
-    {
-        return $this->type;
-    }
-
-    public function setType(int $type): self
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    public function getTypeType(): string
-    {
-        return self::TYPE[$this->type];
     }
 
     public function getQuantity(): ?int
@@ -337,6 +311,30 @@ class Ingredient
     public function setImageFile(?File $imageFile): Ingredient
     {
         $this->imageFile = $imageFile;
+        return $this;
+    }
+
+    /**
+     * @return Collection|CategoryIngredient[]
+     */
+    public function getCategoryIngredient(): Collection
+    {
+        return $this->categoryIngredient;
+    }
+
+    public function addCategoryIngredient(CategoryIngredient $categoryIngredient): self
+    {
+        if (!$this->categoryIngredient->contains($categoryIngredient)) {
+            $this->categoryIngredient[] = $categoryIngredient;
+        }
+
+        return $this;
+    }
+
+    public function removeCategoryIngredient(CategoryIngredient $categoryIngredient): self
+    {
+        $this->categoryIngredient->removeElement($categoryIngredient);
+
         return $this;
     }
 }

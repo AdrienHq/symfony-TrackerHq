@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Data\SearchData;
 use App\Entity\Ingredient;
 use App\Form\IngredientType;
+use App\Form\SearchForm;
 use App\Repository\IngredientRepository;
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,7 +21,7 @@ class IngredientController extends AbstractController
      */
     private $em;
 
-    public function __construct(IngredientRepository $repository, EntityManagerInterface $em )
+    public function __construct(IngredientRepository $repository, EntityManagerInterface $em)
     {
         $this->repository = $repository;
         $this->em = $em;
@@ -30,18 +32,23 @@ class IngredientController extends AbstractController
      * @param IngredientRepository $ingRepo
      * @return Response
      */
-    public function index(IngredientRepository $ingRepo): Response
+    public function index(IngredientRepository $ingRepo, Request $request): Response
     {
-        
-        /* --$ingredient = new Ingredient();
-        $ingredient->setName('Steak')->setType(1)->setDescription('Du poulet')->setQuantity(100)->setCarbohydrate(3.57)->setFat(8.93)->setProtein(16.07)->setSugar(1.79)->setEnergy(161)->setCreatedBy('');
+        /*
+        $ingredient = new Ingredient();
+        $ingredient->setName('Steak')->setType(1)->setDescription('Du poulet')->setQuantity(100)->setCarbohydrate(3.57)->setFat(8.93)->setProtein(16.07)->setSugar(1.79)->setEnergy(161)->setCreatedBy('')->setFilename('test');
         $em = $this->getDoctrine()->getManager();
         $em->persist($ingredient);
         $em->flush();
-        */
-        $ingredients = $ingRepo->findAll(); 
+        */ 
+        $data = new SearchData();
+        $data->page = $request->get('page', 1);
+        $form = $this->createForm(SearchForm::class, $data);
+        $form->handleRequest($request);
+        $ingredients = $ingRepo->findSearch($data); 
         return $this->render('ingredient/ingredient.html.twig', [
             'ingredients' => $ingredients,
+            'form' => $form->createView(),
             'current_menu' => 'ingredients'
         ]);
     }

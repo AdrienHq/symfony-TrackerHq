@@ -4,29 +4,59 @@
 
 {% block adminNav %}{% endblock %}
 
+{% block stylesheets %}
+    <style>
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            grid-gap: 20px
+        }
+        .filter {
+            display: block;
+            position: sticky;
+            top: 20 px;
+        }
+    </style>
+{% endblock %}
+
 {% block body %}
-    <div>
-        <h1 class="mt-4">Tous les ingrédients</h1>
+    <h1 class="mt-5 text-center">Tous les ingrédients</h1>
+    <div class="container mt-5">
         <div class="row">
-            {% for ingredient in ingredients %}
-                <div class="col-md-4">
-                    <div class="card mt-4">
+            <div class="col-md-3">
+                {% include 'ingredient/_filter.html.twig' with {form: form} only %}
+            </div>
+            <div class="col-md-9">
+                <div class="grid">
+                    {% for ingredient in ingredients %}
+                    <div class="card">
+                        {% if ingredient.filename %}
+                            {# | imagine_filter('thumb', runtimeConfig) #}
+                            <img src="{{ vich_uploader_asset(ingredient, 'imageFile') }}" alt="card-img-top" style="width: 100%; height:auto">
+                        {% endif %}
                         <div class="card-body">
-                            {% if ingredient.filename %}
-                                {# | imagine_filter('thumb', runtimeConfig) #}
-                                <img src="{{ vich_uploader_asset(ingredient, 'imageFile') }}" alt="card-img-top" style="width: 100%; height:auto">
-                            {% endif %}
                             <h5 class="card-title">
                                 <a href="{{ path('ingredient.show', {id: ingredient.id, slug: ingredient.slug}) }}">{{ ingredient.name }}</a>
                             </h5>
-                            <div class="text-primary">{{ ingredient.description }}</div>
+                            <p class="text text-muted">{{ ingredient.description }}</p>
+                            <div>
+                                {% for c in ingredient.categoryIngredient %}
+                                    <em class="text-muted text-primary text-italic">#{{ c.name }}</em>
+                                {% endfor %}
+                            </div>
                         </div>
                     </div>
+                    {% endfor %}
                 </div>
-            {% endfor %}
-        </div>
+                <div class="mt-4">
+                    {{ knp_pagination_render(ingredients) }}
+                </div>
+            </div>
+        </div>    
     </div>
     <div class="text-right">
         <a href="{{ path('ingredient.new') }}" class="btn btn-primary">Créer un ingrédient</a>
     </div>
 {% endblock body %}
+
+

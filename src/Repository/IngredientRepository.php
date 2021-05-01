@@ -2,10 +2,12 @@
 
 namespace App\Repository;
 
+use App\Data\SearchData;
 use App\Entity\Ingredient;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\DBAL\Query\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
+use Knp\Component\Pager\Pagination\PaginationInterface;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @method Ingredient|null find($id, $lockMode = null, $lockVersion = null)
@@ -15,9 +17,16 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class IngredientRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+
+     /**
+     * @var PaginatorInterface
+     */
+    private $paginator;
+
+    public function __construct(ManagerRegistry $registry, PaginatorInterface $paginator)
     {
         parent::__construct($registry, Ingredient::class);
+        $this->paginator = $paginator;
     }
 
     /**
@@ -38,6 +47,38 @@ class IngredientRepository extends ServiceEntityRepository
     {
         return $this->findAll();
     }
+
+    /**
+     * @return PaginationInterface
+     */
+    public function findSearch(SearchData $search): PaginationInterface
+    {
+        $query = $this
+            ->createQueryBuilder('i')
+            ->select('c','i')
+            ->join('i.categoryIngredient', 'c');
+        
+
+        if(!empty($search->q)) {
+            $query = $query
+                ->andWhere('i.name LIKE :q')
+                ->setParameter('q', "%{$search->q}%");
+        }
+
+        if(!empty($search->categoryIngredient)) {
+            $query = $query
+                ->andWhere('c.id IN (:categoryIng)')
+                ->setParameter('categoryIng', $search->categoryIngredient );
+        }
+
+        $query = $query->getQuery();
+        return $this->paginator->paginate(
+            $query,
+            $search->page,
+            15
+        );
+    }
+
 
 
     // /**

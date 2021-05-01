@@ -1,0 +1,9 @@
+{{ form_start(form, {attr: {class: 'filter'}}) }}
+    <h4>Recherche</h4>
+    {{ form_row(form.q) }}
+    <h4>Type d'ingrédient</h4>
+    {{ form_row(form.categoryIngredient) }}
+
+<button type="submit" class="btn-primary w-100">Filtrer</button>
+
+{{ form_end(form) }}
