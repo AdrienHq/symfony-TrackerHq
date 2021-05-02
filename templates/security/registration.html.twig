@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Inscription{% endblock title %}
+{% block title %}{% trans from 'messages' %}subscribe{% endtrans %}{% endblock title %}
 
 {% block adminNav %}{% endblock %}
 
 {% block body %}
     <div class="container mt-4">
-        <h2>Inscription au site</h2>
+        <h2>{% trans from 'messages' %}subscribeTitle{% endtrans %}</h2>
         {{ include ('security/_form.html.twig', {form: form, button: 'Création du compte'}) }}
     </div>
 {% endblock body %}

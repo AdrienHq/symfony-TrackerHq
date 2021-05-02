@@ -34,7 +34,7 @@
             </table>
         </div>
         <div class="col-md-4">
-            <h2>Composition</h2>
+            <h2>{% trans from 'messages' %}recipeComposition{% endtrans %}</h2>
             {% set totalFat = 0 %}
             {% set totalProtein = 0 %}
             {% set totalSugar = 0 %}
@@ -48,11 +48,11 @@
                 {% set totalCarbohydrate = totalCarbohydrate + ingredient.carbohydrate %}
             {% endfor %}
             <ul class="list-group">
-                <li class="list-group-item">{{ "Fat : " }} {{ totalFat|number_format(2, '.', ',') }}</li>
-                <li class="list-group-item">{{ "Protein : " }}{{ totalProtein|number_format(2, '.', ',') }}</li>
-                <li class="list-group-item">{{ "Sugar : " }}{{ totalSugar|number_format(2, '.', ',') }}</li>
-                <li class="list-group-item">{{ "Energy : " }}{{ totalEnergy|number_format(2, '.', ',') }}</li>
-                <li class="list-group-item">{{ "Carbohydrate : " }}{{ totalCarbohydrate|number_format(2, '.', ',') }}</li>
+                <li class="list-group-item">{% trans from 'messages' %}recipeFat{% endtrans %} {{ totalFat|number_format(2, '.', ',') }}</li>
+                <li class="list-group-item">{% trans from 'messages' %}recipeProtein{% endtrans %} {{ totalProtein|number_format(2, '.', ',') }}</li>
+                <li class="list-group-item">{% trans from 'messages' %}recipeSugar{% endtrans %} {{ totalSugar|number_format(2, '.', ',') }}</li>
+                <li class="list-group-item">{% trans from 'messages' %}recipeEnergy{% endtrans %} {{ totalEnergy|number_format(2, '.', ',') }}</li>
+                <li class="list-group-item">{% trans from 'messages' %}recipeCarb{% endtrans %} {{ totalCarbohydrate|number_format(2, '.', ',') }}</li>
             </ul>
         </div>
     </div>

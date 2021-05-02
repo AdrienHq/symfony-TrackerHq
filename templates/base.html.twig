@@ -21,13 +21,13 @@
                 <div class="collapse navbar-collapse" id="navbarColor02">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link {% if current_menu is defined and current_menu == 'profile' %}active{% endif %}" href="{{ path('user.show') }}">User Profile</a>>
+                            <a class="nav-link {% if current_menu is defined and current_menu == 'profile' %}active{% endif %}" href="{{ path('user.show') }}">{% trans from 'messages' %}navUser{% endtrans %}</a>>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {% if current_menu is defined and current_menu == 'dashboard' %}active{% endif %}" href="{{ path('dashboard.index') }}">Dashboard</a>
+                            <a class="nav-link {% if current_menu is defined and current_menu == 'dashboard' %}active{% endif %}" href="{{ path('dashboard.index') }}">{% trans from 'messages' %}navDashboard{% endtrans %}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {% if current_menu is defined and current_menu == 'meal' %}active{% endif %}" href="{{ path('meal.new') }}">Meal</a>
+                            <a class="nav-link {% if current_menu is defined and current_menu == 'meal' %}active{% endif %}" href="{{ path('meal.new') }}">{% trans from 'messages' %}navMeal{% endtrans %}</a>
                         </li>
                     </ul>
                 </div>
@@ -43,10 +43,10 @@
                 {% if app.user %}
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link {% if current_menu is defined and current_menu == 'ingredients' %}active{% endif %}" href="{{ path('ingredient.index') }}">Ingredients</a>
+                            <a class="nav-link {% if current_menu is defined and current_menu == 'ingredients' %}active{% endif %}" href="{{ path('ingredient.index') }}">{% trans from 'messages' %}navIngredient{% endtrans %}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {% if current_menu is defined and current_menu == 'recipe' %}active{% endif %}" href="{{ path('recipe.index') }}">Recipes</a>
+                            <a class="nav-link {% if current_menu is defined and current_menu == 'recipe' %}active{% endif %}" href="{{ path('recipe.index') }}">{% trans from 'messages' %}navRecipe{% endtrans %}</a>
                         </li>
                     </ul>
                 {% endif %}
@@ -54,27 +54,39 @@
                 {% if app.user %}
                      <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a href="{{ path('logout') }}" class="nav-link">Se déconnecter</a>
+                            <a href="{{ path('logout') }}" class="nav-link">{% trans from 'messages' %}navDeco{% endtrans %}</a>
                         </li>
                     </ul>
                 {% else %}
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a href="{{ path('inscription') }}" class="nav-link">Inscription</a>
+                            <a href="{{ path('inscription') }}" class="nav-link">{% trans from 'messages' %}navSubscribe{% endtrans %}</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ path('login') }}" class="nav-link">Se connecter</a>
+                            <a href="{{ path('login') }}" class="nav-link">{% trans from 'messages' %}navConnexion{% endtrans %}</a>
                         </li>
                     </ul>
                 {% endif %}
                 {% if is_granted('ROLE_ADMIN') %}
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a href="{{ path('admin.user.index') }}" class="nav-link">Administration</a>
+                            <a href="{{ path('admin.user.index') }}" class="nav-link">{% trans from 'messages' %}navAdmin{% endtrans %}</a>
                         </li>
                     </ul>
                 {% endif %}
             </div>
+            {#
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown-language" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    English
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-language">
+                    <a class="dropdown-item" href="{{ path('/', {_locale: 'en'}) }}">English</a>
+                    <a class="dropdown-item" href="{{ path('/', {_locale: 'fr'}) }}">Français</a>
+                </div>
+            </li>
+            #}    
         </nav>
 
         <div>
@@ -84,19 +96,18 @@
                         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ path('admin.user.index') }}">User <span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="{{ path('admin.user.index') }}">{% trans from 'messages' %}navAdminUser{% endtrans %}<span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ path('admin.ingredient.index') }}"  >Ingredient</a>
+                                <a class="nav-link" href="{{ path('admin.ingredient.index') }}">{% trans from 'messages' %}navAdminIngredient{% endtrans %}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ path('admin.recipe.index') }}">Recipe</a>
+                                <a class="nav-link" href="{{ path('admin.recipe.index') }}">{% trans from 'messages' %}navAdminRecipe{% endtrans %}</a>
                             </li>
                             </ul>
                         </div>
                     </nav>
                 </div>
-                
             {% endblock %}
         </div>
                 

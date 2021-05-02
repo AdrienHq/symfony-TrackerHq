@@ -6,7 +6,7 @@
 
 {% block body %}
     <div class="container mt-4">
-        <h2>Ajouter un repas à votre suivi</h2>
+        <h2>{% trans from 'messages' %}mealAdd{% endtrans %}</h2>
         {% for message in app.flashes('success') %}
             <div class="alert alert-success">
                 {{ message }}

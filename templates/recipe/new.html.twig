@@ -6,7 +6,7 @@
 
 {% block body %}
     <div class="container mt-4">
-        <h2>Création d'une recette</h2>
+        <h2>{% trans from 'messages' %}recipeCreate{% endtrans %}</h2>
         {{ include ('/recipe/_form.html.twig', {form: form, button: 'Créer'}) }}
     </div>
 {% endblock body %}

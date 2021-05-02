@@ -6,7 +6,7 @@
 
 {% block body %}
     <div class="container">
-        <h1>Se connecter</h1>
+        <h1>{% trans from 'messages' %}navConnexion{% endtrans %}</h1>
     </div>
     <div class="container mt-4">
         {% if error %}
@@ -16,15 +16,15 @@
         {% endif %}
         <form action="{{ path('login') }}" method="post">
             <div class="form-group">
-                <label for="username">Nom d'utilisateur</label>
+                <label for="username">{% trans from 'messages' %}profileUsername{% endtrans %}</label>
                 <input type="text" id="username" name="_username" class="form-control" value="{{ last_username}}">
             </div>
 
             <div class="form-group">
-                <label for="password">Mot de passe</label>
+                <label for="password">{% trans from 'messages' %}password{% endtrans %}</label>
                 <input type="password" id="password" name="_password" class="form-control">
             </div>
-            <button type="submit" class="btn btn-primary">Se connecter</button>
+            <button type="submit" class="btn btn-primary">{% trans from 'messages' %}navConnexionAction{% endtrans %}</button>
         </form>    
     </div>
 {% endblock body %}

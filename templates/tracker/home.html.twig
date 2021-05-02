@@ -1,3 +1,4 @@
+{% trans_default_domain 'app' %}
 {% extends 'base.html.twig' %}
 
 {% block title %}Tracker{% endblock title %}
@@ -8,14 +9,13 @@
     <div class="container-fluid text-center">
 
         <div class="jumbotron text-center">
-            <h1>Bienvenue</h1>
+            <h1>{% trans from 'messages' %}bienvenu{% endtrans %}</h1>
             <p>
-                Gràce à tracker vous allez pouvoir gérer votre prise de poids ou régime.
-                Nous avons prévu une série d'aliments et de recettes que vous pourrez rajouter 
+                {% trans from 'messages' %}messageHome{% endtrans %}
             </p>
         </div>
         <div class="jumbotron container" style="background-color: white">
-            <h2 class="mt-4">Dernière recettes ajoutés</h2>
+            <h2 class="mt-4">{% trans from 'messages' %}lastRecipe{% endtrans %}</h2>
             <div class="row flex">
                 {% for recipe in recipes %}
                     <div class="col-3">
@@ -35,7 +35,7 @@
             </div>
         </div>
         <div class="jumbotron container" style="background-color: white" >
-            <h2 class="mt-4" >Derniers ingrédients ajoutés</h2>
+            <h2 class="mt-4" >{% trans from 'messages' %}lastIngredient{% endtrans %}</h2>
             <div class="row flex">
                 {% for ingredient in ingredients %}
                     <div class="col-3"> 

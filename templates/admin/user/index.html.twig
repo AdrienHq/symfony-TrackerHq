@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Gestion des utilisateurs{% endblock %}
+{% block title %}{% trans from 'messages' %}userGestion{% endtrans %}{% endblock %}
 
 {% block body %}
     <div class="container mt-4">
-        <h1>Tous les utilisateurs</h1>
+        <h1>{% trans from 'messages' %}userall{% endtrans %}</h1>
         {% for message in app.flashes('success') %}
             <div class="alert alert-success">
                 {{ message }}
@@ -13,8 +13,8 @@
         <table class="table table-hover table-striped">
             <thead>
                 <tr>
-                    <th>Titre</th>
-                    <th>Actions</th>
+                    <th>{% trans from 'messages' %}title{% endtrans %}</th>
+                    <th>{% trans from 'messages' %}actions{% endtrans %}</th>
                 </tr>
             </thead>
             <tbody>
@@ -22,11 +22,11 @@
                     <tr>
                         <td>{{user.name}}</td>
                         <td>
-                            <a href="{{ path('admin.user.edit', {id: user.id } ) }}" class="btn btn-secondary">Editer</a>
+                            <a href="{{ path('admin.user.edit', {id: user.id } ) }}" class="btn btn-secondary">{% trans from 'messages' %}actionEdit{% endtrans %}</a>
                             <form method ="post" action="{{ path('admin.user.delete', {id: user.id}) }}" style="display: inline-block" onsubmit="return confirm('Are you sure ?')">
                                 <input type="hidden" name="_method" value="DELETE">
                                 <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
-                                <button class="btn btn-danger">Supprimer</button>
+                                <button class="btn btn-danger">{% trans from 'messages' %}actionDelete{% endtrans %}</button>
                             </form>
                         </td>
                     </tr>
@@ -34,7 +34,7 @@
             </tbody>
         </table>
         <div class="text-right">
-            <a href="{{ path('admin.user.new') }}" class="btn btn-primary">Créer un utilisateur</a>
+            <a href="{{ path('admin.user.new') }}" class="btn btn-primary">{% trans from 'messages' %}userCreate{% endtrans %}</a>
         </div>
     </div>
 {% endblock body %}

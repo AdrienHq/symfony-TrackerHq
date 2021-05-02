@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit{% endblock %}
+{% block title %}{% trans from 'messages' %}actionEdit{% endtrans %}{% endblock %}
 
 {% block adminNav %}{% endblock %}
 
 {% block body %}
     <div class="container mt-4">
-        <h2>Editer l'utilisateur</h2>
+        <h2>{% trans from 'messages' %}useredit{% endtrans %}</h2>
         {{ include ('admin/user/_form.html.twig', {form: form, button: 'Editer'}) }}
     </div>
 {% endblock body %}

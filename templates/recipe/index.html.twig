@@ -6,7 +6,7 @@
 
 {% block body %}
     <div>
-        <h1 class="mt-4">Toutes les recettes</h1>
+        <h1 class="mt-4">{% trans from 'messages' %}recipeAll{% endtrans %}</h1>
         <div class="row">
             {% for recipe in recipes %}
                 <div class="col-md-4">
@@ -27,6 +27,6 @@
         </div>
     </div>
     <div class="text-right">
-        <a href="{{ path('recipe.new') }}" class="btn btn-primary">Créer une recette</a>
+        <a href="{{ path('recipe.new') }}" class="btn btn-primary">{% trans from 'messages' %}recipeCreateOne{% endtrans %}</a>
     </div>
 {% endblock body %}

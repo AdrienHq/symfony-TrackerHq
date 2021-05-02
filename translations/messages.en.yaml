@@ -1,0 +1,75 @@
+bienvenu: Welcome
+messageHome: Gràce à tracker vous allez pouvoir gérer votre prise de poids ou régime. Nous avons prévu une série d'aliments et de recettes que vous pourrez rajouter
+lastRecipe: Last recipes added
+lastIngredient: Last ingredients added
+navUser: Profile
+navDashboard: Dashboard
+navMeal: Meal
+navIngredient: Ingredients
+navRecipe: Recipes
+navDeco: Disconnect
+navSubscribe: Subscribe
+navConnexion: Connection
+navConnexionAction: Connection
+navAdmin: Administration
+navAdminUser: Users
+navAdminIngredient: Ingredients
+navAdminRecipe: Recipes
+password: Password
+
+profile: profile
+profileUpdate: Update your profile
+profileName: Name
+profileFirstname: Firstname
+profileUsername: Username
+profileWeight: Weight
+profileHeight: Height
+profileBmr: Bmr
+profileGender: Gender
+profileActivity: Activity
+profileUpdatePlan: Update your plan and/or your profile
+
+subscribe: Subscription 
+subscribeTitle: Subscription to the website
+
+
+ingComposition: Composition
+ingQuantity: Quantity
+ingFat: Fat ->  
+ingProtein: Protein ->  
+ingSugar: Sugar ->  
+ingEnergy: Energy ->  
+ingCarb: Carbohydrate ->  
+ingCreate: Creation of a ingredient
+ingCreateOne: Create an ingredient
+ingAll: All ingredients
+ingEdit: Edit the ingredient
+ingType: Type of ingredient
+
+recipeComposition: Composition
+recipeFat: Fat ->  
+recipeProtein: Protein ->  
+recipeSugar: Sugar ->  
+recipeEnergy: Energy ->  
+recipeCarb: Carbohydrate ->  
+recipeCreate: Creatino of a recipe
+recipeCreateOne: Create a recipe
+recipeAll: All the recipes
+recipeEdit: Edit the recipe
+
+userEdit: Edit the user
+userGestion: User management
+userAll: All users
+userCreate: Creation of a user
+userCreateTitle: Create a user
+
+mealAdd: Add a meal to your plan
+
+actionEdit: Edit
+actionCreate: Create
+actionDelete: Delete
+actionSearch: Search
+actionFilter: Filter
+
+title: Title
+actions: Actions

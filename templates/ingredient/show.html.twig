@@ -27,33 +27,33 @@
         <div class="col-md-8">
             <table class="table table-striped">
                 <tr>
-                    <td>Type</th>
+                    <td>{% trans from 'messages' %}ingType{% endtrans %}</th>
                     {% for categoryIngredient in ingredient.categoryIngredient %}
                         <td>{{ categoryIngredient }} </td>
                     {% endfor %}
                 </tr>
                 <tr>
-                    <td>Quantity</th>
+                    <td>{% trans from 'messages' %}ingQuantity{% endtrans %}</th>
                     <td>{{ ingredient.quantity }}{{ ' grams' }}</td>
                 </tr>
                 <tr>
-                    <th>Carbohydrate</th>
+                    <th>{% trans from 'messages' %}ingCarb{% endtrans %}</th>
                     <td>{{ ingredient.carbohydrate|number_format(2, '.', ',') }}</td>
                 </tr>
                 <tr>
-                    <th>Fat</th>
+                    <th>{% trans from 'messages' %}ingFat{% endtrans %}</th>
                     <td>{{ ingredient.fat|number_format(2, '.', ',') }}</td>
                 </tr>
                 <tr>
-                    <th>Protein</th>
+                    <th>{% trans from 'messages' %}ingProtein{% endtrans %}</th>
                     <td>{{ ingredient.protein|number_format(2, '.', ',') }}</td>
                 </tr>
                 <tr>
-                    <th>Sugar</th>
+                    <th>{% trans from 'messages' %}ingSugar{% endtrans %}</th>
                     <td>{{ ingredient.sugar|number_format(2, '.', ',') }}</td>
                 </tr>
                 <tr>
-                    <th>Energy</th>
+                    <th>{% trans from 'messages' %}ingenergy{% endtrans %}</th>
                     <td>{{ ingredient.energy|number_format(2, '.', ',') }}</td>
                 </tr>
             </table>

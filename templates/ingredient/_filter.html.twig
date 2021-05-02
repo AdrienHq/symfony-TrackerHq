@@ -1,9 +1,9 @@
 {{ form_start(form, {attr: {class: 'filter'}}) }}
-    <h4>Recherche</h4>
+    <h4>{% trans from 'messages' %}actionSearch{% endtrans %}</h4>
     {{ form_row(form.q) }}
-    <h4>Type d'ingrédient</h4>
+    <h4>{% trans from 'messages' %}ingType{% endtrans %}</h4>
     {{ form_row(form.categoryIngredient) }}
 
-<button type="submit" class="btn-primary w-100">Filtrer</button>
+<button type="submit" class="btn-primary w-100">{% trans from 'messages' %}actionFilter{% endtrans %}</button>
 
 {{ form_end(form) }}
