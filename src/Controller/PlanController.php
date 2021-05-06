@@ -25,7 +25,7 @@ class PlanController extends AbstractController
     }
 
     /**
-     * @Route("/plan", name="plan.index")
+     * @Route("/{_locale}/plan", name="plan.index")
      * @param PlanRepository $planRepo
      * @return Response
      */

@@ -31,7 +31,7 @@ class DashboardController extends AbstractController
     }
 
     /**
-     * @Route("/dashboard", name="dashboard.index")
+     * @Route("/{_locale}/dashboard", name="dashboard.index")
      * @param MealRepository $mealRepo
      * @return Response
      */

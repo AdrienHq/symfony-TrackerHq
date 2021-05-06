@@ -29,7 +29,7 @@ class RecipeController extends AbstractController
     }
 
     /**
-     * @Route("/recipe", name="recipe.index")
+     * @Route("/{_locale}/recipe", name="recipe.index")
      * @param RecipeRepository $recipeRepo
      * @return Response
      */
@@ -43,7 +43,7 @@ class RecipeController extends AbstractController
     }
 
     /**
-     * @Route("/recipe/{slug}-{id}", name="recipe.show", requirements={"slug": "[a-z0-ç\-]*"})
+     * @Route("/{_locale}/recipe/{slug}-{id}", name="recipe.show", requirements={"slug": "[a-z0-ç\-]*"})
      * @return Response
      */
     public function show(Recipe $recipe, string $slug): Response
@@ -62,7 +62,7 @@ class RecipeController extends AbstractController
     }
 
     /**
-     * @Route("/recipe/create", name="recipe.new")
+     * @Route("/{_locale}/recipe/create", name="recipe.new")
      */
     public function new(Request $request)
     {

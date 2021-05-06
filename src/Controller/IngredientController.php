@@ -28,7 +28,7 @@ class IngredientController extends AbstractController
     }
 
     /**
-     * @Route("/ingredients", name="ingredient.index")
+     * @Route("/{_locale}/ingredients", name="ingredient.index")
      * @param IngredientRepository $ingRepo
      * @return Response
      */
@@ -54,7 +54,7 @@ class IngredientController extends AbstractController
     }
 
     /**
-     * @Route("/ingredients/{slug}-{id}", name="ingredient.show", requirements={"slug": "[a-z0-ç\-]*"})
+     * @Route("/{_locale}/ingredients/{slug}-{id}", name="ingredient.show", requirements={"slug": "[a-z0-ç\-]*"})
      * @return Response
      */
     public function show(Ingredient $ingredient, string $slug): Response
@@ -73,7 +73,7 @@ class IngredientController extends AbstractController
 
 
     /**
-     * @Route("/ingredient/create", name="ingredient.new")
+     * @Route("/{_locale}/ingredient/create", name="ingredient.new")
      */
     public function new(Request $request)
     {

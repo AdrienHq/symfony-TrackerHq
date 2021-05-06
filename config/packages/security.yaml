@@ -13,10 +13,11 @@ security:
             anonymous: true
             logout:
                 path: /logout
-                target: /
+                target: /fr/
 
             form_login:
                 check_path: login
+                default_target_path: /fr/
 
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }

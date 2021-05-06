@@ -35,7 +35,7 @@ class MealController extends AbstractController
     }
 
     /**
-     * @Route("/meal/create", name="meal.new")
+     * @Route("/{_locale}/meal/create", name="meal.new")
      * * @return Response
      */
     public function new(Request $request)

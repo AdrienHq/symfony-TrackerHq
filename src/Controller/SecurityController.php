@@ -33,7 +33,7 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/login", name="login")
+     * @Route("/{_locale}/login", name="login")
      */
     public function login(AuthenticationUtils $authenticationUtils)
     {
@@ -46,7 +46,7 @@ class SecurityController extends AbstractController
     }
 
    /**
-     * @Route("/inscription", name="inscription")
+     * @Route("/{_locale}/inscription", name="inscription")
      */
     public function registration(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {

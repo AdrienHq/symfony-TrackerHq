@@ -33,7 +33,7 @@
                 </div>
             {% endif %}
             <div class="mx-auto order-0">
-                <a class="navbar-brand" href="/">Tracker</a>
+                <a class="navbar-brand" href="{{ path('home') }}">Tracker</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -75,18 +75,8 @@
                     </ul>
                 {% endif %}
             </div>
-            {#
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="dropdown-language" role="button"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    English
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-language">
-                    <a class="dropdown-item" href="{{ path('/', {_locale: 'en'}) }}">English</a>
-                    <a class="dropdown-item" href="{{ path('/', {_locale: 'fr'}) }}">Français</a>
-                </div>
-            </li>
-            #}    
+            <a class="navbar-brand" href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'fr'})) }}">FR</a>
+            <a class="navbar-brand" href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}">EN</a>  
         </nav>
 
         <div>

@@ -20,6 +20,9 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
             - '../src/Tests/'
+    
+    App\EventSubscriber\LocaleSubscriber:
+        arguments: ['%kernel.default_locale%']
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class

@@ -34,7 +34,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/user", name="user.show")
+     * @Route("/{_locale}/user", name="user.show")
      * @return Response
      */
     public function index() : Response
@@ -47,7 +47,7 @@ class UserController extends AbstractController
     }
 
      /**
-     * @Route("/user/{id}", name="user.modify", methods="GET|POST")
+     * @Route("/{_locale}/user/{id}", name="user.modify", methods="GET|POST")
      */
     public function edit(User $user, Request $request)
     {
