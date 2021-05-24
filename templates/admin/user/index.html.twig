@@ -4,7 +4,7 @@
 
 {% block body %}
     <div class="container mt-4">
-        <h1>{% trans from 'messages' %}userall{% endtrans %}</h1>
+        <h1>{% trans from 'messages' %}userAll{% endtrans %}</h1>
         {% for message in app.flashes('success') %}
             <div class="alert alert-success">
                 {% trans from 'messages' %}flashSuccess{% endtrans %}

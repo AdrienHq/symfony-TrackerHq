@@ -28,6 +28,7 @@ profileBmr: Bmr
 profileGender: Sexe
 profileActivity: Activité
 profileUpdatePlan: Modifier votre suivi et/ou votre profile
+profilePlan: Plan
 
 subscribe: Inscription 
 subscribeTitle: Inscription au site
@@ -45,6 +46,7 @@ ingCreateOne: Créer un ingrédient
 ingAll: Tous les ingrédients
 ingEdit: Editer l'ingrédient
 ingType: Type d'ingrédient
+ingCreateInfo: Merci de rentrer les informations pour un poids de 100 grammes. 
 
 recipeComposition: Composition
 recipeFat: Graisse ->  
@@ -75,3 +77,20 @@ title: Titre
 actions: Actions
 
 flashSuccess: Création réussie 
+
+
+dashBoardInfo: Vos informations
+dashBoardBmr: Taux métabolique de base (BMR)
+dashBoardRecipe: Recettes consommées aujourd'hui
+dashBoardIngredient: Ingrédients consommés aujourd'hui
+dashBoardAlert1: Attention ! Votre consomation journalière dépasse vos besoins journaliers.
+dashBoardAlert2: Attention ! Vous avez déjà consommé 80% de vos besoins journaliers.
+
+activitySed: Sédentaire
+activityActif: Actif
+activityTActif: Très actif 
+activitySportif: Sportif
+
+planDiet: Diète
+planNormal: Maintien
+planGain: Prise de poids

@@ -27,6 +27,4 @@ class TrackerController extends AbstractController
             'recipes' => $recipes
         ]);
     }
-
-
 }

@@ -46,6 +46,4 @@ class SearchForm extends AbstractType
     {
         return '';
     }
-
-
 }

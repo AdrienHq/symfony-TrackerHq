@@ -29,7 +29,7 @@ class AdminRecipeController extends AbstractController
     }
 
     /**
-     * @Route("/admin/recipe", name="admin.recipe.index")
+     * @Route("/{_locale}/admin/recipe", name="admin.recipe.index")
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function index()
@@ -39,7 +39,7 @@ class AdminRecipeController extends AbstractController
     }
 
     /**
-     * @Route("/admin/recipe/create", name="admin.recipe.new")
+     * @Route("/{_locale}/admin/recipe/create", name="admin.recipe.new")
      */
     public function new(Request $request)
     {
@@ -59,7 +59,7 @@ class AdminRecipeController extends AbstractController
     }
 
     /**
-     * @Route("/admin/recipe/{id}", name="admin.recipe.edit", methods="GET|POST")
+     * @Route("/{_locale}/admin/recipe/{id}", name="admin.recipe.edit", methods="GET|POST")
      */
     public function edit(Recipe $recipe, Request $request)
     {
@@ -77,7 +77,7 @@ class AdminRecipeController extends AbstractController
     }
 
      /**
-     * @Route("/admin/recipe/{id}", name="admin.recipe.delete", methods="DELETE")
+     * @Route("/{_locale}/admin/recipe/{id}", name="admin.recipe.delete", methods="DELETE")
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function delete(Request $request, Recipe $recipe)

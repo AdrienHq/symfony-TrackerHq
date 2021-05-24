@@ -28,6 +28,7 @@ profileBmr: Bmr
 profileGender: Gender
 profileActivity: Activity
 profileUpdatePlan: Update your plan and/or your profile
+profilePlan: Plan
 
 subscribe: Subscription 
 subscribeTitle: Subscription to the website
@@ -45,6 +46,7 @@ ingCreateOne: Create an ingredient
 ingAll: All ingredients
 ingEdit: Edit the ingredient
 ingType: Type of ingredient
+ingCreateInfo: Please enter the informations for a weight of 100 grams.
 
 recipeComposition: Composition
 recipeFat: Fat ->  
@@ -73,3 +75,19 @@ actionFilter: Filter
 
 title: Title
 actions: Actions
+
+dashBoardInfo: Your informations
+dashBoardBmr: Basal Metabolic Rate (BMR)
+dashBoardRecipe: Recipes consume today
+dashBoardIngredient: Ingredients consume today
+dashBoardAlert1: Warning ! Your daily consumption exceeds your daily needs.
+dashBoardAlert2: Warning ! You already consume 80% of your daily needs. 
+
+activitySed: Sédentaire
+activityActif: Active
+activityTActif: Very active
+activitySportif: Athletic
+
+planDiet: Diet
+planNormal: Normal
+planGain: Weight gain

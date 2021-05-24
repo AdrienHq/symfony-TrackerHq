@@ -26,7 +26,7 @@ class AdminUserController extends AbstractController
     }
 
     /**
-     * @Route("/admin", name="admin.user.index")
+     * @Route("/{_locale}/admin", name="admin.user.index")
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function index()
@@ -36,7 +36,7 @@ class AdminUserController extends AbstractController
     }
 
     /**
-     * @Route("/admin/user/create", name="admin.user.new")
+     * @Route("/{_locale}/admin/user/create", name="admin.user.new")
      */
     public function new(Request $request)
     {
@@ -56,7 +56,7 @@ class AdminUserController extends AbstractController
     }
 
     /**
-     * @Route("/admin/user/{id}", name="admin.user.edit", methods="GET|POST")
+     * @Route("/{_locale}/admin/user/{id}", name="admin.user.edit", methods="GET|POST")
      */
     public function edit(User $user, Request $request)
     {
@@ -74,7 +74,7 @@ class AdminUserController extends AbstractController
     }
 
      /**
-     * @Route("/admin/user/{id}", name="admin.user.delete", methods="DELETE")
+     * @Route("/{_locale}/admin/user/{id}", name="admin.user.delete", methods="DELETE")
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function delete(Request $request, User $user)

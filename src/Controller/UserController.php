@@ -54,6 +54,27 @@ class UserController extends AbstractController
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
+            $brm = ( ($user->getWeight()*10)+($user->getHeight()*6.25)-(5*$user->getAge())+5);
+            if( $user->getGender() == 0 ){
+                $brm += 5;
+            } else {
+                $brm -= 161;
+            }
+            if($user->getActivity() == 0){
+                $brm *= 1.2;
+            } 
+            if( $user->getActivity() == 1){
+                $brm *= 1.55;
+            }
+            if( $user->getActivity() == 2){
+                $brm *= 1.725;
+            }  
+            if( $user->getActivity() == 3){
+                $brm *= 1.9;
+            }
+            $user->setBrm($brm);
+
+
             $this->em->flush();
             $this->addFlash('success', 'Edit successful');
             return $this->redirectToRoute('user.show');

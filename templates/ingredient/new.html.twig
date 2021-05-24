@@ -7,6 +7,7 @@
 {% block body %}
     <div class="container mt-4">
         <h2>{% trans from 'messages' %}ingCreate{% endtrans %}</h2>
+        <p class="h4 font-italic mt-5 mb-5">{% trans from 'messages' %}ingCreateInfo{% endtrans %}</p>
         {{ include ('admin/ingredient/_form.html.twig', {form: form, button: 'Créer'}) }}
     </div>
 {% endblock body %}

@@ -4,30 +4,78 @@
 
 {% block adminNav %}{% endblock %}
 
+{% block javascripts %}
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        {{ gc_draw(col, 'div_col') }}
+        {{ gc_draw(bar, 'div_bar') }}
+    </script>
+{% endblock %}
+
 {% block body %}
-    <div class="jumbotron"><h1>Dashboard</h1></div>
-    <div class="row">
-        <div class="col-md-4">
-            <h2>Vos informations</h2>
-            <ul class="list-group">
-                <li class="list-group-item">{{ "Taux métabolique de base (BMR)" }} {{ user.brm }}</li>
-            </ul>
-        </div> 
-        <div class="list-group col-md-4">
-            <a href="#" class="list-group-item list-group-item-action active">Recettes consommées aujourd'hui</a>
-            {% for meal in allUserMeal %}
-                {% for recipe in meal.mealRecipes %}
-                    <a href="#" class="list-group-item list-group-item-action">{{ recipe.name }}</a>
-                {% endfor %}
-            {% endfor %}
+    <div class="jumbotron">
+        <h1>Dashboard</h1>
+    </div>
+
+    {% if user.brm < calories  %}
+        <div class="alert alert-danger" role="alert">
+            {% trans from 'messages' %}dashBoardAlert1{% endtrans %}
         </div>
-        <div class="list-group col-md-4">
-            <a href="#" class="list-group-item list-group-item-action active">Ingrédients consommés aujourd'hui</a>
-            {% for meal in allUserMeal %}
-                {% for ingredient in meal.mealIngredient %}
-                    <a href="#" class="list-group-item list-group-item-action">{{ ingredient.name }}</a>    
+    {% elseif calories >= ( 80/100 * user.brm) %}
+        <div class="alert alert-danger" role="alert">
+            {% trans from 'messages' %}dashBoardAlert2{% endtrans %}
+        </div>
+    {% endif %}
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div id="div_col"></div>
+            </div>
+            <div class="col">
+                <div id="div_bar"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col border border-dark">
+                <h2 class="mt-3 ml-3">{% trans from 'messages' %}dashBoardInfo{% endtrans %}</h2>
+                <table class="table">
+                        <tr>
+                            <th>{% trans from 'messages' %}dashBoardBmr{% endtrans %}</th>
+                            <td>{{ user.brm }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans from 'messages' %}profileActivity{% endtrans %}</th>
+                            <td>{% if (user.activity == 0) %} {% trans from 'messages' %}activitySed{% endtrans %} {% endif %} </td>
+                            <td>{% if (user.activity == 1) %} {% trans from 'messages' %}activityActif{% endtrans %} {% endif %} </td>
+                            <td>{% if (user.activity == 2) %} {% trans from 'messages' %}activityTActif{% endtrans %}  {% endif %} </td>
+                            <td>{% if (user.activity == 3) %} {% trans from 'messages' %}activitySportif{% endtrans %}  {% endif %} </td>
+                        </tr>
+                        <tr>
+                            <th>{% trans from 'messages' %}profilePlan{% endtrans %}</th>
+                            <td>{% if (user.plan == 0) %} {% trans from 'messages' %}planDiet{% endtrans %} {% endif %} </td>
+                            <td>{% if (user.plan == 1) %} {% trans from 'messages' %}planNormal{% endtrans %} {% endif %} </td>
+                            <td>{% if (user.plan == 2) %} {% trans from 'messages' %}planGain{% endtrans %}  {% endif %} </td>
+                        </tr>
+                </table>
+            </div>
+            <div class="col">
+                <a href="#" class="list-group-item list-group-item-action active">{% trans from 'messages' %}dashBoardRecipe{% endtrans %}</a>
+                {% for meal in allUserMeal %}
+                    {% for recipe in meal.mealRecipes %}
+                        <a href="#" class="list-group-item list-group-item-action">{{ recipe.name }}</a>
+                    {% endfor %}
+                {% endfor %}          
+            </div>
+            <div class="col">
+                <a href="#" class="list-group-item list-group-item-action active">{% trans from 'messages' %}dashBoardIngredient{% endtrans %}</a>
+                {% for meal in allUserMeal %}
+                    {% for ingredient in meal.mealIngredient %}
+                        <a href="#" class="list-group-item list-group-item-action">{{ ingredient.name }}</a>    
+                    {% endfor %}
                 {% endfor %}
-            {% endfor %}
+            </div>
         </div>
     </div>
 

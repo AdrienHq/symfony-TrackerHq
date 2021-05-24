@@ -17,11 +17,11 @@
         <div class="col-md-8">
             <table class="table table-striped">
                 <tr>
-                    <td>{% trans from 'messages' %}profileName{% endtrans %}</th>
+                    <th>{% trans from 'messages' %}profileName{% endtrans %}</th>
                     <td>{{ user.name }} </td>
                 </tr>
                 <tr>
-                    <td>{% trans from 'messages' %}profileFirstname{% endtrans %}</th>
+                    <th>{% trans from 'messages' %}profileFirstname{% endtrans %}</th>
                     <td>{{ user.firstname }}</td>
                 </tr>
                 <tr>
@@ -51,7 +51,6 @@
                     <td>{% if (user.activity == 2) %} {{ "Très actif" }}  {% endif %} </td>
                     <td>{% if (user.activity == 3) %} {{ "Sportif" }}  {% endif %} </td>
                 </tr>
-                
             </table>
         </div>
     </div>

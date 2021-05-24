@@ -26,7 +26,7 @@ class AdminIngredientController extends AbstractController
     }
 
     /**
-     * @Route("/admin/ingredient", name="admin.ingredient.index")
+     * @Route("/{_locale}/admin/ingredient", name="admin.ingredient.index")
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function index()
@@ -36,7 +36,7 @@ class AdminIngredientController extends AbstractController
     }
 
     /**
-     * @Route("/admin/ingredient/create", name="admin.ingredient.new")
+     * @Route("/{_locale}/admin/ingredient/create", name="admin.ingredient.new")
      */
     public function new(Request $request)
     {
@@ -56,7 +56,7 @@ class AdminIngredientController extends AbstractController
     }
 
     /**
-     * @Route("/admin/ingredient/{id}", name="admin.ingredient.edit", methods="GET|POST")
+     * @Route("/{_locale}/admin/ingredient/{id}", name="admin.ingredient.edit", methods="GET|POST")
      */
     public function edit(Ingredient $ingredient, Request $request)
     {
@@ -74,7 +74,7 @@ class AdminIngredientController extends AbstractController
     }
 
      /**
-     * @Route("/admin/ingredient/{id}", name="admin.ingredient.delete", methods="DELETE")
+     * @Route("/{_locale}/admin/ingredient/{id}", name="admin.ingredient.delete", methods="DELETE")
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function delete(Request $request, Ingredient $ingredient)
