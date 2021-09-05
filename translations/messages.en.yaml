@@ -49,11 +49,11 @@ ingType: Type of ingredient
 ingCreateInfo: Please enter the informations for a weight of 100 grams.
 
 recipeComposition: Composition
-recipeFat: Fat ->  
-recipeProtein: Protein ->  
-recipeSugar: Sugar ->  
-recipeEnergy: Energy ->  
-recipeCarb: Carbohydrate ->  
+recipeFat: Fat 
+recipeProtein: Protein
+recipeSugar: Sugar
+recipeEnergy: Energy 
+recipeCarb: Carbohydrate
 recipeCreate: Creatino of a recipe
 recipeCreateOne: Create a recipe
 recipeAll: All the recipes
@@ -91,3 +91,33 @@ activitySportif: Athletic
 planDiet: Diet
 planNormal: Normal
 planGain: Weight gain
+
+form:
+  ingredient:
+    name: 'Name'
+    description: 'Description'
+    quantity: 'By unit'
+    carbohydrate: 'Carbohydrate'
+    fat: 'Fat'
+    protein: 'Protein'
+    sugar: 'Sugar'
+    energy: 'Energy'
+    createdby: 'Created by'
+  recipe:
+    name: 'Name'
+    description: 'Description'
+  user:
+    username: 'Username'
+    firstname: 'Firstname'
+    name: 'Name'
+    email: 'Email'
+    password: 'Password'
+    weight: 'Weight'
+    height: 'Height'
+    age: 'Age'
+    gender: 'Gender'
+    activity: 'Activity'
+  meal:
+    type: 'Sort of meal'
+    ingredient: "Choice of food"
+    recipes: 'Choice of recipes'

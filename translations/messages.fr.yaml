@@ -36,11 +36,11 @@ subscribeTitle: Inscription au site
 
 ingComposition: Composition
 ingQuantity: Quantité
-ingFat: Graisse ->  
-ingProtein: Protéine ->  
-ingSugar: Sucre ->  
-ingEnergy: Energie ->  
-ingCarb: Carbohydrate ->  
+ingFat: Graisse
+ingProtein: Protéine
+ingSugar: Sucre
+ingEnergy: Energie
+ingCarb: Carbohydrate
 ingCreate: Création d'un ingrédient
 ingCreateOne: Créer un ingrédient
 ingAll: Tous les ingrédients
@@ -94,3 +94,35 @@ activitySportif: Sportif
 planDiet: Diète
 planNormal: Maintien
 planGain: Prise de poids
+
+form:
+  user:
+      username: "Nom d'utilisateur"
+      firstname: 'Prénom'
+      name: 'Nom'
+      email: 'Email'
+      password: 'Mot de passe'
+      weight: 'Poids'
+      height: 'Taille'
+      age: 'Age'
+      gender: 'Genre'
+      activity: 'Activité'
+      plan: "Formule de suivis"
+  ingredient:
+    name: 'Nom'
+    description: 'Description'
+    quantity: "A l'unité"
+    carbohydrate: 'Carbohydrate'
+    fat: 'Graisse'
+    protein: 'Protéine'
+    sugar: 'Sucre'
+    energy: 'Energie'
+    createdby: 'Créer par'
+  recipe:
+    name: 'Nom'
+    description: 'Description'
+
+  meal:
+    type: 'Sorte de repas'
+    ingredient: "Choix d'aliments"
+    recipes: 'Choix de recettes'

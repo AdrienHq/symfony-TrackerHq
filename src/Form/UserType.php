@@ -15,17 +15,19 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username')
-            ->add('firstname')
-            ->add('name')
-            ->add('email')
-            ->add('weight')
-            ->add('height')
-            ->add('age')
+            ->add('username', null, ['label' => 'form.user.username'])
+            ->add('firstname', null, ['label' => 'form.user.firstname'])
+            ->add('name', null, ['label' => 'form.user.name'])
+            ->add('email', null, ['label' => 'form.user.email'])
+            ->add('weight', null, ['label' => 'form.user.weight'])
+            ->add('height', null, ['label' => 'form.user.height'])
+            ->add('age', null, ['label' => 'form.user.age'])
             ->add('activity', ChoiceType::class, [
+                'label' => 'form.user.activity',
                 'choices' => $this->getChoicesActivity()
             ])   
             ->add('plan', EntityType::class, [
+                'label' => 'form.user.plan',
                 'class' => Plan::class,
                 'choice_label' => 'name'
             ]) 

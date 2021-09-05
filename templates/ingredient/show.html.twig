@@ -32,10 +32,13 @@
                         <td>{{ categoryIngredient }} </td>
                     {% endfor %}
                 </tr>
+                {% if ingredient.quantity == false %}
                 <tr>
                     <td>{% trans from 'messages' %}ingQuantity{% endtrans %}</th>
-                    <td>{{ ingredient.quantity }}{{ ' grams' }}</td>
+                    <td>{% trans from 'messages' %}form.ingredient.quantity{% endtrans %}</td>
+                    
                 </tr>
+                {% endif %}
                 <tr>
                     <th>{% trans from 'messages' %}ingCarb{% endtrans %}</th>
                     <td>{{ ingredient.carbohydrate|number_format(2, '.', ',') }}</td>
@@ -53,7 +56,7 @@
                     <td>{{ ingredient.sugar|number_format(2, '.', ',') }}</td>
                 </tr>
                 <tr>
-                    <th>{% trans from 'messages' %}ingenergy{% endtrans %}</th>
+                    <th>{% trans from 'messages' %}ingEnergy{% endtrans %}</th>
                     <td>{{ ingredient.energy|number_format(2, '.', ',') }}</td>
                 </tr>
             </table>

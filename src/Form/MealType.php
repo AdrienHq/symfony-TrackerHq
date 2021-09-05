@@ -17,15 +17,18 @@ class MealType extends AbstractType
     {
         $builder
             ->add('type', ChoiceType::class, [
+                'label' => 'form.meal.type',
                 'choices' => $this->getChoicesType()
             ])
             ->add('mealIngredient',EntityType::class,[
+                'label' => 'form.meal.ingredient',
                 'class'=>Ingredient::class,
                 'choice_label'=>'name',
                 'multiple'=>true,
                 'expanded'=>true,
             ])
             ->add('mealRecipes',EntityType::class,[
+                'label' => 'form.meal.recipes',
                 'class'=>Recipe::class,
                 'choice_label'=>'name',
                 'multiple'=>true,

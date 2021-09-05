@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Cocur\Slugify\Slugify;
+use phpDocumentor\Reflection\Types\Boolean;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -37,9 +38,9 @@ class Ingredient
     private $description;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="boolean", options={"default":"0"})
      */
-    private $quantity;
+    private $quantity = false;
 
     /**
      * @ORM\Column(type="decimal", precision=10, scale=2))
@@ -143,12 +144,12 @@ class Ingredient
         return $this;
     }
 
-    public function getQuantity(): ?int
+    public function getQuantity(): ?bool
     {
         return $this->quantity;
     }
 
-    public function setQuantity(?int $quantity): self
+    public function setQuantity(?bool $quantity): self
     {
         $this->quantity = $quantity;
 
