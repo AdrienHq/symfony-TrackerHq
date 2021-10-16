@@ -1,4 +1,28 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.ingredients) }}
+
+    <h3>Scientists</h3>
+    <div class="row">
+    {% for ingForm in form.ingredients %}
+        <div class="col-xs-4">
+            {{ form_row(ingForm) }}
+        </div>
+    {% endfor %}
+    
+    {#
+    <p>Ingredients</p>
+    <input type="checkbox" name="checkbox">   Pomme</input><input class="m-2 ml-5" type="text" name="text">unités</br>
+    <input type="checkbox" name="checkbox">   Epinard</input><input class="m-2 ml-5" type="text" name="text">grammes</br>
+    <input type="checkbox" name="checkbox">   Boeuf</input><input class="m-2 ml-5" type="text" name="text">grammes</br>
+    <input type="checkbox" name="checkbox">   Poulet</input><input class="m-2 ml-5" type="text" name="text">grammes</br>
+    <input type="checkbox" name="checkbox">   Riz</input><input class="m-2 ml-5" type="text" name="text">grammes</br>
+    <input type="checkbox" name="checkbox">   Oeuf</input><input class="m-2 ml-5" type="text" name="text">unités</br>
+    <input type="checkbox" name="checkbox">   Pâte</input><input class=" m-2 ml-5" type="text" name="text">grammes</br>
+    <input type="checkbox" name="checkbox">   Pomme</input><input class="m-2 ml-5" type="text" name="text">unités</br>
+    #}
+    {% dump form.ingredients %}
+    {{ form_row(form.imageFile) }}
     <button class="btn-primary">{{ button|default('Valider') }}</button>
 {{ form_end(form) }}

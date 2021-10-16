@@ -54,9 +54,9 @@
                         </tr>
                         <tr>
                             <th>{% trans from 'messages' %}profilePlan{% endtrans %}</th>
-                            <td>{% if (user.plan == 0) %} {% trans from 'messages' %}planDiet{% endtrans %} {% endif %} </td>
-                            <td>{% if (user.plan == 1) %} {% trans from 'messages' %}planNormal{% endtrans %} {% endif %} </td>
-                            <td>{% if (user.plan == 2) %} {% trans from 'messages' %}planGain{% endtrans %}  {% endif %} </td>
+                            <td>{% if (user.plan.type == 0)|default(0) %} {% trans from 'messages' %}planDiet{% endtrans %} {% endif %} </td>
+                            <td>{% if (user.plan.type == 1)|default(0) %} {% trans from 'messages' %}planNormal{% endtrans %} {% endif %} </td>
+                            <td>{% if (user.plan.type == 2)|default(0) %} {% trans from 'messages' %}planGain{% endtrans %}  {% endif %} </td>
                         </tr>
                 </table>
             </div>

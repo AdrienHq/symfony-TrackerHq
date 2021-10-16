@@ -34,23 +34,23 @@
             <div class="col-md-9">
                 <div class="grid">
                     {% for ingredient in ingredients %}
-                    <div class="card">
-                        {% if ingredient.filename %}
-                            {# | imagine_filter('thumb', runtimeConfig) #}
-                            <img src="{{ vich_uploader_asset(ingredient, 'imageFile') }}" alt="card-img-top" style="width: 100%; height:auto">
-                        {% endif %}
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                <a href="{{ path('ingredient.show', {id: ingredient.id, slug: ingredient.slug}) }}">{{ ingredient.name }}</a>
-                            </h5>
-                            <p class="text text-muted">{{ ingredient.description }}</p>
-                            <div>
-                                {% for c in ingredient.categoryIngredient %}
-                                    <em class="text-muted text-primary text-italic">#{{ c.name }}</em>
-                                {% endfor %}
+                        <div class="card">
+                            {% if ingredient.filename %}
+                                {# | imagine_filter('thumb', runtimeConfig) #}
+                                <img src="{{ vich_uploader_asset(ingredient, 'imageFile') }}" alt="card-img-top" style="width: 100%; height:auto">
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="{{ path('ingredient.show', {id: ingredient.id, slug: ingredient.slug}) }}">{{ ingredient.name }}</a>
+                                </h5>
+                                <p class="text text-muted">{{ ingredient.description }}</p>
+                                <div>
+                                    {% for c in ingredient.categoryIngredient %}
+                                        <em class="text-muted text-primary text-italic">#{{ c.name }}</em>
+                                    {% endfor %}
+                                </div>
                             </div>
                         </div>
-                    </div>
                     {% endfor %}
                 </div>
                 <div class="mt-4">

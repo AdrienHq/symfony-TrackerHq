@@ -73,14 +73,14 @@ class Ingredient
     private $created_by;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Recipe::class, mappedBy="ingredients")
-     */
-    private $recipes;
-
-    /**
      * @ORM\ManyToMany(targetEntity=Meal::class, mappedBy="mealIngredient")
      */
     private $ingredientInMeal;
+
+    /**
+     * @ORM\OneToMany(targetEntity=IngredientQuantityInRecipe::class, mappedBy="ingredient", fetch="EXTRA_LAZY")
+     */
+    private $recipes;
 
     /**
      * @var string|null
@@ -229,14 +229,14 @@ class Ingredient
     }
 
     /**
-     * @return Collection|Recipe[]
+     * @return ArrayCollection|IngredientQuantityInRecipe[]
      */
-    public function getRecipes(): Collection
+    public function getRecipes()
     {
         return $this->recipes;
     }
 
-    public function addRecipe(Recipe $recipe): self
+    public function addRecipe(IngredientQuantityInRecipe $recipe): self
     {
         if (!$this->recipes->contains($recipe)) {
             $this->recipes[] = $recipe;
@@ -246,7 +246,7 @@ class Ingredient
         return $this;
     }
 
-    public function removeRecipe(Recipe $recipe): self
+    public function removeRecipe(IngredientQuantityInRecipe $recipe): self
     {
         if ($this->recipes->removeElement($recipe)) {
             $recipe->removeIngredient($this);
