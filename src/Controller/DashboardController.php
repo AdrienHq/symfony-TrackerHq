@@ -47,18 +47,17 @@ class DashboardController extends AbstractController
 
         $date = new \DateTime('today');
         $user = $this->security->getUser();
-        $userDb = $userRepo->findByUsername($user->getUsername());
-        $userData = $userDb->getBrm();
+        $userData = $user->getBrm();
         $allUserMeal = $mealRepo->findMealByUser($user, $date);
 
         $calories = 0;
         $carbohydrate = 0;
         $fat = 0;
-        $protein = 0; 
+        $protein = 0;
         $sugar = 0;
         $energy = 0;
 
-        foreach ($allUserMeal as $meal){     
+        foreach ($allUserMeal as $meal){
             foreach($meal->getMealIngredient()->getValues() as $ingredient){
                 $calories += ($ingredient->getProtein()*4)+($ingredient->getCarbohydrate()*4)+($ingredient->getFat()*9);
                 $carbohydrate += $ingredient->getCarbohydrate();
@@ -67,14 +66,14 @@ class DashboardController extends AbstractController
                 $sugar += $ingredient->getSugar();
                 $energy += $ingredient->getEnergy();
             }
-            foreach($meal->getMealRecipes()->getValues() as $ingredient){
-                foreach($ingredient->getIngredients() as $uniqueIngredient){
-                    $calories += ($uniqueIngredient->getProtein()*4)+($uniqueIngredient->getCarbohydrate()*4)+($uniqueIngredient->getFat()*9);
-                    $carbohydrate += $uniqueIngredient->getCarbohydrate();
-                    $fat += $uniqueIngredient->getFat();
-                    $protein += $uniqueIngredient->getProtein();
-                    $sugar += $uniqueIngredient->getSugar();
-                    $energy += $uniqueIngredient->getEnergy();
+            foreach($meal->getMealRecipes()->getValues() as $recipe){
+                foreach($recipe->getIngredients() as $IngredientQuantity){
+                    $calories += ($IngredientQuantity->getIngredient()->getProtein()*4)+($IngredientQuantity->getIngredient()->getCarbohydrate()*4)+($IngredientQuantity->getIngredient()->getFat()*9);
+                    $carbohydrate += $IngredientQuantity->getIngredient()->getCarbohydrate();
+                    $fat += $IngredientQuantity->getIngredient()->getFat();
+                    $protein += $IngredientQuantity->getIngredient()->getProtein();
+                    $sugar += $IngredientQuantity->getIngredient()->getSugar();
+                    $energy += $IngredientQuantity->getIngredient()->getEnergy();
                 }
             }
         }
@@ -83,8 +82,8 @@ class DashboardController extends AbstractController
         $col->getData()->setArrayToDataTable(
             [
                 ['Element', ['legend' => 'none'],['role' => 'style' ]],
-                ['BMR', $userData, '#8ED3F4'],            
-                ['Macro', $calories, '#8A8683'],            
+                ['BMR', $userData, '#8ED3F4'],
+                ['Macro', $calories, '#8A8683'],
             ]
         );
         $col->getOptions()->setTitle('Bmr / Macros');
@@ -96,7 +95,7 @@ class DashboardController extends AbstractController
         $col->getOptions()->setWidth(520);
         $col->getOptions()->setHeight(600);
 
-        
+
         $bar = new BarChart();
         $bar->getData()->setArrayToDataTable([
             ['Quantité',  ['legend' => 'none'],['role' => 'style' ]],
@@ -111,8 +110,8 @@ class DashboardController extends AbstractController
         $bar->getOptions()->getHAxis()->setMinValue(0);
         $bar->getOptions()->setWidth(530);
         $bar->getOptions()->setHeight(600);
-        
-        
+
+
         return $this->render('dashboard/dashboard.html.twig',[
             'calories' => $calories,
             'col' => $col,
@@ -120,7 +119,7 @@ class DashboardController extends AbstractController
             'allUserMeal' => $allUserMeal,
             'user' => $user,
             'current_menu' => 'dashboard'
-        ]);      
+        ]);
     }
-    
+
 }

@@ -78,7 +78,7 @@ class Ingredient
     private $ingredientInMeal;
 
     /**
-     * @ORM\OneToMany(targetEntity=IngredientQuantityInRecipe::class, mappedBy="ingredient", fetch="EXTRA_LAZY")
+     * @ORM\OneToMany(targetEntity="IngredientQuantityInRecipe", mappedBy="ingredient")
      */
     private $recipes;
 
@@ -234,25 +234,6 @@ class Ingredient
     public function getRecipes()
     {
         return $this->recipes;
-    }
-
-    public function addRecipe(IngredientQuantityInRecipe $recipe): self
-    {
-        if (!$this->recipes->contains($recipe)) {
-            $this->recipes[] = $recipe;
-            $recipe->addIngredient($this);
-        }
-
-        return $this;
-    }
-
-    public function removeRecipe(IngredientQuantityInRecipe $recipe): self
-    {
-        if ($this->recipes->removeElement($recipe)) {
-            $recipe->removeIngredient($this);
-        }
-
-        return $this;
     }
 
     /**

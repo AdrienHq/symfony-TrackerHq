@@ -4,7 +4,7 @@ namespace App\Form;
 
 use App\Entity\IngredientQuantityInRecipe;
 use App\Entity\Ingredient;
-use App\Entity\IngredientRepository;
+use App\Repository\IngredientRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -19,11 +19,12 @@ class IngredientQuantityInRecipeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('ingredients',EntityType::class,[
-            'label' => 'form.meal.ingredient',
-            'class'=>Ingredient::class,
-            'choice_label'=>'name',
-        ])
+            ->add('ingredient',EntityType::class,[
+                'label' => 'form.meal.ingredient',
+                'class' => Ingredient::class,
+                'choice_label' => 'name',
+            ])
+            ->add('grams')
         ;
     }
 
