@@ -4,9 +4,26 @@
 
 {% block adminNav %}{% endblock %}
 
+{% block javascripts %}
+    <script>
+        jQuery(document).ready(function() {
+            var $wrapper = $('.js-recipe-ingredient-wrapper');
+            $wrapper.on('click', '.js-remove-ingredient', function(e) {
+                e.preventDefault();
+                console.log($(this), $(this).closest('.js-recipe-ingredient-item'))
+                $(this).closest('.js-recipe-ingredient-item')
+                    .fadeOut()
+                    .remove();
+            });
+        });
+    </script>
+{% endblock %}
+
 {% block body %}
     <div class="container mt-4">
         <h2>{% trans from 'messages' %}recipeEdit{% endtrans %}</h2>
         {{ include ('admin/recipe/_form.html.twig', {form: form, button: 'Editer'}) }}
     </div>
 {% endblock body %}
+
+

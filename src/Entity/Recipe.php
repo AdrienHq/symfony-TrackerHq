@@ -42,7 +42,7 @@ class Recipe
     private $recipeInMeal;
 
     /**
-     * @ORM\OneToMany(targetEntity="IngredientQuantityInRecipe", mappedBy="recipe")
+     * @ORM\OneToMany(targetEntity="IngredientQuantityInRecipe", mappedBy="recipe", fetch="EXTRA_LAZY", orphanRemoval=true, cascade={"persist"},)
      */
     private $ingredients;
 
@@ -113,6 +113,7 @@ class Recipe
     {
         if (!$this->ingredients->contains($ingredient)) {
             $this->ingredients[] = $ingredient;
+            $ingredient->setRecipe($this);
         }
 
         return $this;
@@ -125,6 +126,17 @@ class Recipe
         return $this;
     }
 
+    /*
+    public function removeIngredient(IngredientQuantityInRecipe $ingredient): self
+    {
+        if (!$this->ingredient->contains($ingredient)) {
+            return;
+        }
+        $this->ingredient->removeElement($genusSingredientcientist);
+        $ingredient->setIngredient(null);
+    }
+    */
+    
     public function getSlug(): string
     {
         return (new Slugify())->slugify($this->name);

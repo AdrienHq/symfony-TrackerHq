@@ -1,4 +1,21 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.description) }}
+    <div class="js-recipe-ingredient-wrapper">
+        {% for ingForm in form.ingredients %}
+            <div style="gap:1rem" class="d-flex align-items-center js-recipe-ingredient-item">
+                    {{ form_errors(ingForm) }}
+                    {{ form_row(ingForm.ingredient) }}
+                    {{ form_row(ingForm.grams) }}
+                    <a href="#" class="btn-danger btn btn-sm js-remove-ingredient">
+                        <span>&times;</span>
+                    </a>
+                    
+            </div>
+        {% endfor %}
+    </div>
+
+    </br>
+    {{ form_row(form.imageFile) }}
     <button class="btn-primary">{{ button|default('Valider') }}</button>
 {{ form_end(form) }}
