@@ -25,13 +25,13 @@ class IngredientQuantityInRecipe
     private $grams;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Recipe::class, inversedBy="ingredients")
+     * @ORM\ManyToOne(targetEntity="Recipe")
      * @ORM\JoinColumn(nullable=false)
      */
     private $recipe;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Ingredient::class, inversedBy="recipes")
+     * @ORM\ManyToOne(targetEntity="Ingredient")
      * @ORM\JoinColumn(nullable=false)
      */
     private $ingredient;
@@ -46,15 +46,13 @@ class IngredientQuantityInRecipe
         return $this->grams;
     }
 
-    public function setGrams(?int $grams): self
+    public function setGrams(?int $grams): void
     {
         $this->grams = $grams;
-
-        return $this;
     }
-    
+
     /**
-     * @param mixed
+     * @return mixed
      */
     public function getRecipe()
     {
@@ -64,14 +62,13 @@ class IngredientQuantityInRecipe
     /**
      * @param mixed $recipe
      */
-    public function setRecipe($recipe): self
+    public function setRecipe($recipe): void
     {
         $this->recipe = $recipe;
-        return $this;
     }
 
-        /**
-     * @param mixed
+    /**
+     * @return mixed
      */
     public function getIngredient()
     {
@@ -81,9 +78,8 @@ class IngredientQuantityInRecipe
     /**
      * @param mixed $ingredient
      */
-    public function setIngredientGrams($ingredient): self
+    public function setIngredient($ingredient): void
     {
         $this->ingredient = $ingredient;
-        return $this;
     }
 }

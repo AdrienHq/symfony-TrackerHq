@@ -54,9 +54,9 @@
                         </tr>
                         <tr>
                             <th>{% trans from 'messages' %}profilePlan{% endtrans %}</th>
-                            <td>{% if (user.plan.type == 0)|default(0) %} {% trans from 'messages' %}planDiet{% endtrans %} {% endif %} </td>
-                            <td>{% if (user.plan.type == 1)|default(0) %} {% trans from 'messages' %}planNormal{% endtrans %} {% endif %} </td>
-                            <td>{% if (user.plan.type == 2)|default(0) %} {% trans from 'messages' %}planGain{% endtrans %}  {% endif %} </td>
+                            <td>{% if (user.plan.type|default(0) == 0) %} {% trans from 'messages' %}planDiet{% endtrans %} {% endif %} </td>
+                            <td>{% if (user.plan.type|default(0) == 1) %} {% trans from 'messages' %}planNormal{% endtrans %} {% endif %} </td>
+                            <td>{% if (user.plan.type|default(0) == 2) %} {% trans from 'messages' %}planGain{% endtrans %}  {% endif %} </td>
                         </tr>
                 </table>
             </div>
@@ -66,13 +66,13 @@
                     {% for recipe in meal.mealRecipes %}
                         <a href="#" class="list-group-item list-group-item-action">{{ recipe.name }}</a>
                     {% endfor %}
-                {% endfor %}          
+                {% endfor %}
             </div>
             <div class="col">
                 <a href="#" class="list-group-item list-group-item-action active">{% trans from 'messages' %}dashBoardIngredient{% endtrans %}</a>
                 {% for meal in allUserMeal %}
                     {% for ingredient in meal.mealIngredient %}
-                        <a href="#" class="list-group-item list-group-item-action">{{ ingredient.name }}</a>    
+                        <a href="#" class="list-group-item list-group-item-action">{{ ingredient.name }}</a>
                     {% endfor %}
                 {% endfor %}
             </div>

@@ -45,6 +45,7 @@ class IngredientType extends AbstractType
         ]);
     }
 
+    /*
     private function getChoices()
     {
         $choices = Ingredient::TYPE;
@@ -54,4 +55,5 @@ class IngredientType extends AbstractType
         }
         return $output;
     }
+    */
 }

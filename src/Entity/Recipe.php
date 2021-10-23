@@ -42,7 +42,7 @@ class Recipe
     private $recipeInMeal;
 
     /**
-     * @ORM\OneToMany(targetEntity=IngredientQuantityInRecipe::class, mappedBy="recipe", fetch="EXTRA_LAZY")
+     * @ORM\OneToMany(targetEntity="IngredientQuantityInRecipe", mappedBy="recipe")
      */
     private $ingredients;
 
