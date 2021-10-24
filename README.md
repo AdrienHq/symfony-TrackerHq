@@ -1,7 +1,7 @@
 # TrackerHq
 
-The TrackerHq is a project that I made to keep track of a user calories intake.
-It allow the user to create his ingredient, recipes and have access to his own dashboard where he can view his progression day by day.
+The TrackerHq is a project to keep track of a user's calories intake.
+It allow the user to create his ingredients, recipes and have access to his own dashboard where he can view his progression day by day.
 
 
 Technologies : 
@@ -33,6 +33,14 @@ git clone https://github.com/AdrienHq/TrackerHq.git
 Intall the project & dependencies -> In your project folder. 
 ````bash
 composer install
+````
+Create the database locally
+````bash
+php bin/console doctrine:database:create
+````
+Load the migrations
+````bash
+php bin/console doctrine:migrations:migrate
 ````
 Launch your laragon local server
 ````bash
