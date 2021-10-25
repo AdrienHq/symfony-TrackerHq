@@ -68,12 +68,25 @@ class DashboardController extends AbstractController
             }
             foreach($meal->getMealRecipes()->getValues() as $recipe){
                 foreach($recipe->getIngredients() as $IngredientQuantity){
-                    $calories += ($IngredientQuantity->getIngredient()->getProtein()*4)+($IngredientQuantity->getIngredient()->getCarbohydrate()*4)+($IngredientQuantity->getIngredient()->getFat()*9);
-                    $carbohydrate += $IngredientQuantity->getIngredient()->getCarbohydrate();
-                    $fat += $IngredientQuantity->getIngredient()->getFat();
-                    $protein += $IngredientQuantity->getIngredient()->getProtein();
-                    $sugar += $IngredientQuantity->getIngredient()->getSugar();
-                    $energy += $IngredientQuantity->getIngredient()->getEnergy();
+                    dump($IngredientQuantity->getGrams());
+                    if($IngredientQuantity->getIngredient()->getQuantity())
+                    {
+                        $calories += ($IngredientQuantity->getIngredient()->getProtein()*4)+($IngredientQuantity->getIngredient()->getCarbohydrate()*4)+($IngredientQuantity->getIngredient()->getFat()*9);
+                        $carbohydrate += $IngredientQuantity->getIngredient()->getCarbohydrate();
+                        $fat += $IngredientQuantity->getIngredient()->getFat();
+                        $protein += $IngredientQuantity->getIngredient()->getProtein();
+                        $sugar += $IngredientQuantity->getIngredient()->getSugar();
+                        $energy += $IngredientQuantity->getIngredient()->getEnergy();
+                    }else{
+                        $calories += ($IngredientQuantity->getIngredient()->getProtein()*4)+($IngredientQuantity->getIngredient()->getCarbohydrate()*4)+($IngredientQuantity->getIngredient()->getFat()*9)*$IngredientQuantity->getGrams();
+                        $carbohydrate += $IngredientQuantity->getIngredient()->getCarbohydrate()*$IngredientQuantity->getGrams();
+                        $fat += $IngredientQuantity->getIngredient()->getFat()*$IngredientQuantity->getGrams();
+                        $protein += $IngredientQuantity->getIngredient()->getProtein()*$IngredientQuantity->getGrams();
+                        $sugar += $IngredientQuantity->getIngredient()->getSugar()*$IngredientQuantity->getGrams();
+                        $energy += $IngredientQuantity->getIngredient()->getEnergy()*$IngredientQuantity->getGrams();
+
+                    }
+                    
                 }
             }
         }

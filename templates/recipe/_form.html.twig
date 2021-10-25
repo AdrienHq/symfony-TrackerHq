@@ -2,28 +2,16 @@
     {{ form_row(form.name) }}
     {{ form_row(form.description) }}
 
-    <div class="js-recipe-ingredient-wrapper"
+    <div style="gap:5rem"  class="d-flex align-items-center js-recipe-ingredient-wrapper"
         data-prototype="{{ form_widget(form.ingredients.vars.prototype)|e('html_attr') }}"
         data-index="{{ form.ingredients|length }}"
         >
-            {% for ingForm in form.ingredients %}
-                <div style="gap:1rem" class="d-flex align-items-center js-recipe-ingredient-item">
-                    {{ form_errors(ingForm) }}
-                    {{ form_row(ingForm.ingredient) }}
-                    {{ form_row(ingForm.grams) }}
-                    <a href="#" class="js-remove-ingredient pull-right">
-                        <span class="fa fa-close"></span>
-                    </a>
-                </div>
-            {% endfor %}
-
-            
-            <a href="#" class="btn btn=sm js-recipe-ingredient-add">
-                <span class="fa fa-plus-circle"></span>
-                Ajouter un ingrédient
-            </a>
-        </div>
+        <a style="gap:5rem" href="#" class="btn btn-sm js-recipe-ingredient-add">
+            <span class="fa fa-plus-circle"></span>
+            Ajouter un ingrédient
+        </a>
     </div>
+   
     {{ form_row(form.imageFile) }}
     <button class="btn-primary">{{ button|default('Valider') }}</button>
 {{ form_end(form) }}

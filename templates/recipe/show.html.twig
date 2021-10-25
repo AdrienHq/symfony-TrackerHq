@@ -28,7 +28,14 @@
                     <tr>
                         <td>{{ ingredientQuantity.ingredient.name }} </td>
                         <td>{{ ingredientQuantity.ingredient.description }} </td>
-                        <td>{{ ingredientQuantity.grams }} {{ "gramme(s)"}} </td>
+                        <td>{{ ingredientQuantity.ingredient.quantity }}</td>
+                        <td>{{ ingredientQuantity.grams }} 
+                            {% if(ingredientQuantity.ingredient.quantity != false) %}
+                                {{ "gramme(s)"}}
+                            {% else %}
+                                {{ "unité(s)"}}
+                            {% endif %} 
+                        </td>
                     </tr>
                 {% endfor %}
             </table>
@@ -41,11 +48,19 @@
             {% set totalEnergy = 0 %}
             {% set totalCarbohydrate = 0 %}
             {% for ingredientQuantity in recipe.ingredients %}
-                {% set totalFat = totalFat + ingredientQuantity.ingredient.fat  %}
-                {% set totalProtein = totalProtein + ingredientQuantity.ingredient.protein %}
-                {% set totalSugar = totalSugar + ingredientQuantity.ingredient.sugar %}
-                {% set totalEnergy = totalEnergy + ingredientQuantity.ingredient.energy %}
-                {% set totalCarbohydrate = totalCarbohydrate + ingredientQuantity.ingredient.carbohydrate %}
+                {% if(ingredientQuantity.ingredient.quantity != false) %}
+                    {% set totalFat = totalFat + ingredientQuantity.ingredient.fat  %}
+                    {% set totalProtein = totalProtein + ingredientQuantity.ingredient.protein %}
+                    {% set totalSugar = totalSugar + ingredientQuantity.ingredient.sugar %}
+                    {% set totalEnergy = totalEnergy + ingredientQuantity.ingredient.energy %}
+                    {% set totalCarbohydrate = totalCarbohydrate + ingredientQuantity.ingredient.carbohydrate %}
+                {% else %}
+                    {% set totalFat = totalFat + ingredientQuantity.ingredient.fat*ingredientQuantity.grams %}
+                    {% set totalProtein = totalProtein + ingredientQuantity.ingredient.protein*ingredientQuantity.grams %}
+                    {% set totalSugar = totalSugar + ingredientQuantity.ingredient.sugar*ingredientQuantity.grams %}
+                    {% set totalEnergy = totalEnergy + ingredientQuantity.ingredient.energy*ingredientQuantity.grams %}
+                    {% set totalCarbohydrate = totalCarbohydrate + ingredientQuantity.ingredient.carbohydrate*ingredientQuantity.grams %}
+                {% endif %}
             {% endfor %}
             <ul class="list-group">
                 <li class="list-group-item">{% trans from 'messages' %}recipeFat{% endtrans %} {{ totalFat|number_format(2, '.', ',') }}</li>
