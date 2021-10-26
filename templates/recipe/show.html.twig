@@ -49,12 +49,16 @@
             {% set totalCarbohydrate = 0 %}
             {% for ingredientQuantity in recipe.ingredients %}
                 {% if(ingredientQuantity.ingredient.quantity != false) %}
-                    {% set totalFat = totalFat + ingredientQuantity.ingredient.fat  %}
-                    {% set totalProtein = totalProtein + ingredientQuantity.ingredient.protein %}
-                    {% set totalSugar = totalSugar + ingredientQuantity.ingredient.sugar %}
-                    {% set totalEnergy = totalEnergy + ingredientQuantity.ingredient.energy %}
-                    {% set totalCarbohydrate = totalCarbohydrate + ingredientQuantity.ingredient.carbohydrate %}
+                {% dump ingredientQuantity.grams %}
+                    {% dump ingredientQuantity.grams %}
+                    {% set totalFat = ((totalFat + ingredientQuantity.ingredient.fat)/100)*ingredientQuantity.grams  %}
+                    {% set totalProtein = ((totalProtein + ingredientQuantity.ingredient.protein)/100)*ingredientQuantity.grams %}
+                    {% set totalSugar = ((totalSugar + ingredientQuantity.ingredient.sugar)/100)*ingredientQuantity.grams %}
+                    {% set totalEnergy = ((totalEnergy + ingredientQuantity.ingredient.energy)/100)*ingredientQuantity.grams %}
+                    {% set totalCarbohydrate = ((totalCarbohydrate + ingredientQuantity.ingredient.carbohydrate)/100)*ingredientQuantity.grams %}
                 {% else %}
+                {% dump ingredientQuantity %}
+                {% dump ingredientQuantity.grams %}
                     {% set totalFat = totalFat + ingredientQuantity.ingredient.fat*ingredientQuantity.grams %}
                     {% set totalProtein = totalProtein + ingredientQuantity.ingredient.protein*ingredientQuantity.grams %}
                     {% set totalSugar = totalSugar + ingredientQuantity.ingredient.sugar*ingredientQuantity.grams %}

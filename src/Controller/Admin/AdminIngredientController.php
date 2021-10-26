@@ -31,6 +31,7 @@ class AdminIngredientController extends AbstractController
      */
     public function index()
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $ingredients = $this->repository->findAll();
         return $this->render('admin/ingredient/index.html.twig', compact('ingredients'));
     }
@@ -40,6 +41,7 @@ class AdminIngredientController extends AbstractController
      */
     public function new(Request $request)
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $ingredient = new Ingredient();
         $form = $this->createForm(IngredientType::class, $ingredient);
         $form->handleRequest($request);
@@ -60,6 +62,7 @@ class AdminIngredientController extends AbstractController
      */
     public function edit(Ingredient $ingredient, Request $request)
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $form = $this->createForm(IngredientType::class, $ingredient);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
@@ -79,6 +82,7 @@ class AdminIngredientController extends AbstractController
      */
     public function delete(Request $request, Ingredient $ingredient)
     { 
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         if($this->isCsrfTokenValid('delete'.$ingredient->getId(), $request->get('_token'))) {
             $this->em->remove($ingredient);
             $this->em->flush();

@@ -39,6 +39,7 @@ class UserController extends AbstractController
      */
     public function index() : Response
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
         $user = $this->security->getUser();
         return $this->render('user/profile.html.twig', [
             'user' => $user,
@@ -51,6 +52,7 @@ class UserController extends AbstractController
      */
     public function edit(User $user, Request $request)
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){

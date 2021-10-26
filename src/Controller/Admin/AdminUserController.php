@@ -31,6 +31,7 @@ class AdminUserController extends AbstractController
      */
     public function index()
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
         $users = $this->repository->findAll();
         return $this->render('admin/user/index.html.twig', compact('users'));
     }
@@ -40,6 +41,7 @@ class AdminUserController extends AbstractController
      */
     public function new(Request $request)
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
         $user = new User();
         $form = $this->createForm(RegistrationType::class, $user);
         $form->handleRequest($request);
@@ -60,6 +62,7 @@ class AdminUserController extends AbstractController
      */
     public function edit(User $user, Request $request)
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
         $form = $this->createForm(RegistrationType::class, $user);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
@@ -78,7 +81,8 @@ class AdminUserController extends AbstractController
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function delete(Request $request, User $user)
-    { 
+    {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN'); 
         if($this->isCsrfTokenValid('delete'.$user->getId(), $request->get('_token'))) {
             $this->em->remove($user);
             $this->em->flush();

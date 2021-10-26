@@ -31,6 +31,7 @@ class PlanController extends AbstractController
      */
     public function index(PlanRepository $planRepo): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
         /*
         $plan = new Plan();
         $plan->setName('Normal')->setType(1)->setDescription('Stabilisation');

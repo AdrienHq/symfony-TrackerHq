@@ -34,6 +34,7 @@ class AdminRecipeController extends AbstractController
      */
     public function index()
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $recipes = $this->repository->findAll();
         return $this->render('admin/recipe/index.html.twig', compact('recipes'));
     }
@@ -43,6 +44,7 @@ class AdminRecipeController extends AbstractController
      */
     public function new(Request $request)
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $recipe = new Recipe();
         $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
@@ -63,6 +65,7 @@ class AdminRecipeController extends AbstractController
      */
     public function edit(Recipe $recipe, Request $request)
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
@@ -82,6 +85,7 @@ class AdminRecipeController extends AbstractController
      */
     public function delete(Request $request, Recipe $recipe)
     { 
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         if($this->isCsrfTokenValid('delete'.$recipe->getId(), $request->get('_token'))) {
             $this->em->remove($recipe);
             $this->em->flush();

@@ -40,6 +40,7 @@ class MealController extends AbstractController
      */
     public function new(Request $request)
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
         $meal = new Meal();
         $user = $this->security->getUser();
         $form = $this->createForm(MealType::class, $meal);

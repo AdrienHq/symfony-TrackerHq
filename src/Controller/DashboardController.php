@@ -44,6 +44,7 @@ class DashboardController extends AbstractController
      */
     public function showDashboard(MealRepository $mealRepo, UserRepository $userRepo)
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         $date = new \DateTime('today');
         $user = $this->security->getUser();
@@ -68,15 +69,14 @@ class DashboardController extends AbstractController
             }
             foreach($meal->getMealRecipes()->getValues() as $recipe){
                 foreach($recipe->getIngredients() as $IngredientQuantity){
-                    dump($IngredientQuantity->getGrams());
                     if($IngredientQuantity->getIngredient()->getQuantity())
                     {
-                        $calories += ($IngredientQuantity->getIngredient()->getProtein()*4)+($IngredientQuantity->getIngredient()->getCarbohydrate()*4)+($IngredientQuantity->getIngredient()->getFat()*9);
-                        $carbohydrate += $IngredientQuantity->getIngredient()->getCarbohydrate();
-                        $fat += $IngredientQuantity->getIngredient()->getFat();
-                        $protein += $IngredientQuantity->getIngredient()->getProtein();
-                        $sugar += $IngredientQuantity->getIngredient()->getSugar();
-                        $energy += $IngredientQuantity->getIngredient()->getEnergy();
+                        $calories += ((($IngredientQuantity->getIngredient()->getProtein()*4)+($IngredientQuantity->getIngredient()->getCarbohydrate()*4)+($IngredientQuantity->getIngredient()->getFat()*9))/100)*$IngredientQuantity->getGrams();
+                        $carbohydrate += (($IngredientQuantity->getIngredient()->getCarbohydrate())/100)*$IngredientQuantity->getGrams();
+                        $fat += (($IngredientQuantity->getIngredient()->getFat())/100)*$IngredientQuantity->getGrams();
+                        $protein += (($IngredientQuantity->getIngredient()->getProtein())/100)*$IngredientQuantity->getGrams();
+                        $sugar += (($IngredientQuantity->getIngredient()->getSugar())/100)*$IngredientQuantity->getGrams();
+                        $energy += (($IngredientQuantity->getIngredient()->getEnergy())/100)*$IngredientQuantity->getGrams();
                     }else{
                         $calories += ($IngredientQuantity->getIngredient()->getProtein()*4)+($IngredientQuantity->getIngredient()->getCarbohydrate()*4)+($IngredientQuantity->getIngredient()->getFat()*9)*$IngredientQuantity->getGrams();
                         $carbohydrate += $IngredientQuantity->getIngredient()->getCarbohydrate()*$IngredientQuantity->getGrams();

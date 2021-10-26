@@ -35,6 +35,7 @@ class RecipeController extends AbstractController
      */
     public function index(RecipeRepository $recipeRepo): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
         $recipes = $recipeRepo->findAll();
         return $this->render('recipe/index.html.twig',[
             'recipes' => $recipes,
@@ -48,6 +49,7 @@ class RecipeController extends AbstractController
      */
     public function show(Recipe $recipe, string $slug): Response
     { 
+        $this->denyAccessUnlessGranted('ROLE_USER');
         if($recipe->getSlug() !== $slug){
             return $this->redirectToRoute('recipe.show', [
                 'id' => $recipe->getId(),
@@ -66,6 +68,7 @@ class RecipeController extends AbstractController
      */
     public function new(Request $request)
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
         $recipe = new Recipe();
         $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
